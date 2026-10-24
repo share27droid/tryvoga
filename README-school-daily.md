@@ -30,6 +30,7 @@ This branch adds reproducible daily labels, lagged features, and a leakage-safe 
 - Missing level/cause metadata is not imputed.
 - Features named \`prev_Nd_*\` use only rows strictly before the target date. Target-day labels are included only for retrospective evaluation.
 - The initial baseline test uses the first 180 days as warm-up. The window-comparison test uses a 365-day warm-up so all candidate windows are scored on exactly the same dates. Brier score is lower-is-better.
+- Calibration metrics are descriptive diagnostics on the same common walk-forward period. Fixed-bin calibration error depends on the chosen bins; rare 120/180-minute events make estimates noisy. Brier skill is relative to the expanding-history baseline.
 - The snapshot is historical, not a live feed. These baseline results are not the four-model comparison and do not establish operational safety.
 
 ## Rebuild and test
@@ -39,6 +40,7 @@ python build_school_daily.py
 python build_school_features.py
 python backtest_school_baselines.py
 python backtest_school_windows.py
+python evaluate_school_calibration.py
 python analyze_school_window_stability.py
 python -m unittest -v test_attack_pipeline.py test_tryvoga_sources.py test_tryvoga_school_labels.py test_audit_school_daily.py test_enrich_attack_publication_times.py
 python audit_tryvoga_sources.py
