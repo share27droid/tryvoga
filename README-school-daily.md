@@ -8,6 +8,7 @@ This branch adds reproducible daily labels, lagged features, and a leakage-safe 
 - `kyiv_school_features.csv` and `build_school_features.py`: lagged features for prior 1, 3, 7, 14, 30, and 90 days.
 - `kyiv_baseline_predictions.csv`, `kyiv_baseline_backtest_summary.json`, and `backtest_school_baselines.py`: initial walk-forward comparison of expanding-history and rolling-90-day frequency baselines.
 - `kyiv_window_predictions.csv`, `kyiv_window_backtest_summary.json`, and `backtest_school_windows.py`: fair common-period walk-forward comparison of 30-, 60-, 90-, 180-, and 365-day rolling frequencies against expanding history.
+- `analyze_school_window_stability.py` and `kyiv_window_stability.json`: half-year slices showing how the 30-day vs 90-day comparison changes across historical regimes.
 
 ## Method
 - School window: 08:30–15:00, Kyiv local clock as recorded in the source.
@@ -26,4 +27,5 @@ python build_school_daily.py
 python build_school_features.py
 python backtest_school_baselines.py
 python backtest_school_windows.py
+python analyze_school_window_stability.py
 ```
