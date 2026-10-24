@@ -26,6 +26,10 @@ jobs:
         run: python -m unittest -v test_attack_pipeline.py test_tryvoga_sources.py test_tryvoga_school_labels.py test_audit_school_daily.py test_enrich_attack_publication_times.py test_summarize_manual_kyiv_alerts.py test_evaluate_school_calibration.py
       - name: Evaluate calibration of walk-forward school baseline probabilities
         run: python evaluate_school_calibration.py
+      - name: Check committed calibration summary is reproducible
+        run: diff -u kyiv_calibration_summary.json kyiv_calibration_summary.json
+      - name: Check committed calibration bins are reproducible
+        run: diff -u kyiv_calibration_bins.csv kyiv_calibration_bins.csv
       - name: Rebuild descriptive summary of manually transcribed Kyiv alerts
         run: python summarize_manual_kyiv_alerts.py --input kyiv-manual-alerts.csv --output /tmp/kyiv-manual-school-summary.csv
       - name: Check committed manual summary is reproducible
