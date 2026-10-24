@@ -63,3 +63,17 @@ Do not treat estimated Russian stockpiles or production capacity as precise dail
 3. Run walk-forward tests with identical test dates for (A) alerts-only baseline, (B) attack features alone, and (C) combined features.
 4. Report Brier score and calibration for 60/120/180-minute school-window events, plus event counts and period-by-period performance.
 5. Accept the attack-feature model only if it improves beyond the baseline across multiple periods without relying on future reports or a few rare events.
+
+## Importer added
+
+`import_attack_observations.py` normalizes a downloaded source CSV into a consistent table and writes a QA JSON report. It maps common spellings of the source columns but does not fetch the dataset itself or invent missing values.
+
+Example:
+```bash
+python import_attack_observations.py --input missile_attacks_daily.csv \
+  --output attack_observations_normalized.csv \
+  --qa attack_observations_qa.json
+```
+
+The importer intentionally leaves `published_at` blank and marks rows `usable_for_asof_forecast=false` unless a publication-time column is explicitly supplied with `--publication-time-column COLUMN_NAME`. The PiterFM/Kaggle data review describes event start/end, model, launch place, target, and launched/destroyed counts, but that schema does not by itself establish when each value first became public. A retrospective CSV snapshot cannot support a leakage-safe historical daily forecast merely by sorting on attack time. If only one current CSV is available, it is suitable for descriptive analysis and candidate feature research, not a claimed as-of backtest.
+
