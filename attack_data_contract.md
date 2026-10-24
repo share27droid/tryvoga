@@ -77,3 +77,16 @@ python import_attack_observations.py --input missile_attacks_daily.csv \
 
 The importer intentionally leaves `published_at` blank and marks rows `usable_for_asof_forecast=false` unless a publication-time column is explicitly supplied with `--publication-time-column COLUMN_NAME`. The PiterFM/Kaggle data review describes event start/end, model, launch place, target, and launched/destroyed counts, but that schema does not by itself establish when each value first became public. A retrospective CSV snapshot cannot support a leakage-safe historical daily forecast merely by sorting on attack time. If only one current CSV is available, it is suitable for descriptive analysis and candidate feature research, not a claimed as-of backtest.
 
+## As-of feature builder
+
+`build_attack_asof_features.py` builds daily features at a configurable Kyiv-local cutoff (default 08:30) for trailing 1-, 3-, and 7-day event windows. A row is eligible only when its event timestamp is parseable, its publication timestamp is timezone-aware and parseable, its usability flag is true, and `published_at <= cutoff`. For event timestamps without offsets, pass an explicit convention such as `--naive-event-timezone Europe/Kyiv`; publication timestamps without offsets are always rejected rather than guessed.
+
+Example, after normalizing the downloaded source:
+```bash
+python import_attack_observations.py --input missile_attacks_daily.csv
+python build_attack_asof_features.py --input attack_observations_normalized.csv \
+  --naive-event-timezone Europe/Kyiv
+```
+
+Outputs are `attack_asof_daily_features.csv` and `attack_asof_daily_features_qa.json`. Sums remain blank if there are no numeric values in the eligible rows; separate known/missing-row counts make missingness visible. The script is a feature engineering scaffold, not proof that the source's publication timestamps represent the exact historical version of each row. Do not report a valid backtest until this provenance is verified.
+
