@@ -15,6 +15,8 @@ This branch adds reproducible daily labels, lagged features, and a leakage-safe 
 - `attack_data_contract.md`: schema and no-leakage rules for national attack predictors; explicitly distinguishes event time from publication time.
 - `import_attack_observations.py`: normalizes a downloaded historical attack CSV and emits a QA report; rows without a timezone-aware publication timestamp are excluded from as-of forecasting by default.
 - `build_attack_asof_features.py`: builds exploratory trailing 1/3/7-day national features at a Kyiv-local forecast cutoff, filtering out observations published after the cutoff and keeping missing counts distinct from zero.
+- `tryvoga-alerts.csv`, `tryvoga-daily.csv`, and `tryvoga-nights.csv`: user-added structured exports from tryvoga.live / official Air Force report links; currently short recent coverage only.
+- `audit_tryvoga_sources.py` and `test_tryvoga_sources.py`: structural QA for the three exports, including duplicate keys, interval-duration mismatches, open intervals, and publication-time limitations.
 - `test_attack_pipeline.py`: standard-library regression tests for timestamp eligibility, future-publication exclusion, and missing-vs-zero handling.
 
 ## Method
@@ -35,10 +37,11 @@ python build_school_features.py
 python backtest_school_baselines.py
 python backtest_school_windows.py
 python analyze_school_window_stability.py
-python -m unittest -v test_attack_pipeline.py
+python -m unittest -v test_attack_pipeline.py test_tryvoga_sources.py
+python audit_tryvoga_sources.py
 # Optional, after manually downloading the public dataset CSV:
 python import_attack_observations.py --input missile_attacks_daily.csv
 python build_attack_asof_features.py --naive-event-timezone Europe/Kyiv
 ```
 
-The attack-pipeline tests use synthetic fixtures only. Passing them checks code behavior, not the truth or historical availability of publication timestamps in a real source. Do not claim an as-of national attack backtest until that provenance is independently verified.
+The attack-pipeline and source-audit tests use synthetic fixtures only. The current tryvoga.live exports cover 2026-10-05 through 2026-10-24 (alert intervals may begin/end on different dates), and therefore are not a replacement for the long Kyiv outcome history. The `tryvoga-nights.csv` `as_of` field is clock-only, not a date-time; do not treat it as a trustworthy publication timestamp. The daily regional export is retrospective and does not, by itself, prove when each reported value became available. These exports are useful for descriptive analysis and pipeline QA, but must not enter leakage-safe attack-feature backtests until publication/version availability is established. Passing tests checks code behavior, not the truth or historical availability of publication timestamps in a real source. Do not claim an as-of national attack backtest until that provenance is independently verified.
