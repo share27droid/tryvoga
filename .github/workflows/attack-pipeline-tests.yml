@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Run attack pipeline and source audit regression tests
-        run: python -m unittest -v test_attack_pipeline.py test_tryvoga_sources.py
+      - name: Run attack, source-audit, and school-label regression tests
+        run: python -m unittest -v test_attack_pipeline.py test_tryvoga_sources.py test_tryvoga_school_labels.py
       - name: Audit committed tryvoga CSV exports
         run: python audit_tryvoga_sources.py --output /tmp/tryvoga_sources_qa.json
