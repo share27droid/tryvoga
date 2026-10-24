@@ -4,12 +4,12 @@
   "last_date": "2026-10-19",
   "test_days": 1330,
   "bin_edges": [
-    0,
+    0.0,
     0.05,
     0.1,
     0.2,
     0.4,
-    1
+    1.0
   ],
   "metrics": {
     "60": {
@@ -71,7 +71,7 @@
         "brier_score": 0.09342949,
         "log_loss": 0.34022468,
         "expected_calibration_error_fixed_bins": 0.06328185,
-        "brier_skill_vs_expanding": 0
+        "brier_skill_vs_expanding": 0.0
       }
     },
     "120": {
@@ -133,7 +133,7 @@
         "brier_score": 0.041034,
         "log_loss": 0.18297553,
         "expected_calibration_error_fixed_bins": 0.02610588,
-        "brier_skill_vs_expanding": 0
+        "brier_skill_vs_expanding": 0.0
       }
     },
     "180": {
@@ -195,7 +195,7 @@
         "brier_score": 0.01421783,
         "log_loss": 0.07798768,
         "expected_calibration_error_fixed_bins": 0.0050841,
-        "brier_skill_vs_expanding": 0
+        "brier_skill_vs_expanding": 0.0
       }
     }
   },
