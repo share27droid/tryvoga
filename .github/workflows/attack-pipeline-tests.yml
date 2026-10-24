@@ -46,6 +46,12 @@ jobs:
         run: python bootstrap_school_calibration.py --replicates 300 --block-days 14 --seed 20261024 > /tmp/kyiv_calibration_bootstrap.json
       - name: Validate block-bootstrap output
         run: python -c "import json; d=json.load(open('/tmp/kyiv_calibration_bootstrap.json')); assert d['test_days'] == 1330; assert set(d['metrics']) == {'60','120','180'}; assert all('brier_score_95pct_block_bootstrap_interval' in m for group in d['metrics'].values() for m in group.values()); print('Bootstrap uncertainty output valid for', d['test_days'], 'days')"
+      - name: Upload calibration uncertainty report
+        uses: actions/upload-artifact@v4
+        with:
+          name: kyiv-calibration-bootstrap
+          path: /tmp/kyiv_calibration_bootstrap.json
+          if-no-files-found: error
       - name: Rebuild descriptive summary of manually transcribed Kyiv alerts
         run: python summarize_manual_kyiv_alerts.py --input kyiv-manual-alerts.csv --output /tmp/kyiv-manual-school-summary.csv
       - name: Check committed manual summary is reproducible
