@@ -69,10 +69,10 @@ Do not treat estimated Russian stockpiles or production capacity as precise dail
 
 ## Importer and timestamp resolver
 
-\`import_attack_observations.py\` normalizes a downloaded source CSV into a consistent table and writes a QA JSON report. It maps common spellings of the source columns but does not fetch the dataset itself or invent missing values.
+\`audit_attack_dataset.py\` audits source CSV structure, event-time syntax, source-reference shape, publication-time fields, and missing-versus-zero numeric counts. Run it against the exact file revision you intend to analyze. \`import_attack_observations.py\` normalizes a downloaded source CSV into a consistent table and writes a QA JSON report. It maps common spellings of the source columns but does not fetch the dataset itself or invent missing values.
 
 \`\`\`bash
-python import_attack_observations.py --input missile_attacks_daily.csv \\
+python audit_attack_dataset.py --input missile_attacks_daily.csv --output attack_dataset_qa.json\npython import_attack_observations.py --input missile_attacks_daily.csv \\
   --output attack_observations_normalized.csv \\
   --qa attack_observations_qa.json
 \`\`\`
