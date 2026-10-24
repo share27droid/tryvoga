@@ -80,7 +80,7 @@ def main() -> None:
         raise SystemExit("Input contains no alert rows")
     result = summarize(rows)
     with Path(args.output).open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(result[0]))
+        writer = csv.DictWriter(handle, fieldnames=list(result[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(result)
     print(json.dumps({
