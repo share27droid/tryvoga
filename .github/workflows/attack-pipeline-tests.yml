@@ -24,12 +24,14 @@ jobs:
           python-version: "3.11"
       - name: Run attack, source-audit, school-label, historical-data, publication-time, and calibration tests
         run: python -m unittest -v test_attack_pipeline.py test_tryvoga_sources.py test_tryvoga_school_labels.py test_audit_school_daily.py test_enrich_attack_publication_times.py test_summarize_manual_kyiv_alerts.py test_evaluate_school_calibration.py
+      - name: Preserve committed calibration outputs for reproducibility check
+        run: cp kyiv_calibration_summary.json /tmp/kyiv_calibration_summary.expected.json && cp kyiv_calibration_bins.csv /tmp/kyiv_calibration_bins.expected.csv
       - name: Evaluate calibration of walk-forward school baseline probabilities
         run: python evaluate_school_calibration.py
       - name: Check committed calibration summary is reproducible
-        run: diff -u kyiv_calibration_summary.json kyiv_calibration_summary.json
+        run: diff -u /tmp/kyiv_calibration_summary.expected.json kyiv_calibration_summary.json
       - name: Check committed calibration bins are reproducible
-        run: diff -u kyiv_calibration_bins.csv kyiv_calibration_bins.csv
+        run: diff -u /tmp/kyiv_calibration_bins.expected.csv kyiv_calibration_bins.csv
       - name: Rebuild descriptive summary of manually transcribed Kyiv alerts
         run: python summarize_manual_kyiv_alerts.py --input kyiv-manual-alerts.csv --output /tmp/kyiv-manual-school-summary.csv
       - name: Check committed manual summary is reproducible
