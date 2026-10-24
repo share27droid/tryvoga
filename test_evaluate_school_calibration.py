@@ -1,7 +1,7 @@
 import math
 import unittest
 
-from evaluate_school_calibration import brier_score, calibration_bins, evaluate, log_loss
+from evaluate_school_calibration import brier_score, calibration_bins, evaluate, laplace_smooth_probability, log_loss
 
 
 class CalibrationTests(unittest.TestCase):
@@ -27,6 +27,12 @@ class CalibrationTests(unittest.TestCase):
         self.assertEqual(sum(item["n"] for item in bins), 6)
         self.assertEqual(bins[0]["bin"], "0.00-0.05")
         self.assertEqual(bins[-1]["bin"], "0.40-1.00")
+
+    def test_laplace_smoothing_prevents_zero_probability(self):
+        self.assertAlmostEqual(laplace_smooth_probability(0.0, 30), 1 / 32)
+        self.assertAlmostEqual(laplace_smooth_probability(1.0, 30), 31 / 32)
+        with self.assertRaises(ValueError):
+            laplace_smooth_probability(0.0, 0)
 
     def test_probability_outcomes_alignment_is_validated(self):
         with self.assertRaises(ValueError):
