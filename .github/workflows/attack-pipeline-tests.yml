@@ -23,7 +23,9 @@ jobs:
         with:
           python-version: "3.11"
       - name: Run attack, source-audit, school-label, historical-data, and publication-time tests
-        run: python -m unittest -v test_attack_pipeline.py test_tryvoga_sources.py test_tryvoga_school_labels.py test_audit_school_daily.py test_enrich_attack_publication_times.py
+        run: python -m unittest -v test_attack_pipeline.py test_tryvoga_sources.py test_tryvoga_school_labels.py test_audit_school_daily.py test_enrich_attack_publication_times.py test_summarize_manual_kyiv_alerts.py
+      - name: Rebuild descriptive summary of manually transcribed Kyiv alerts
+        run: python summarize_manual_kyiv_alerts.py --input kyiv-manual-alerts.csv --output /tmp/kyiv-manual-school-summary.csv
       - name: Audit committed tryvoga CSV exports
         run: python audit_tryvoga_sources.py --output /tmp/tryvoga_sources_qa.json
       - name: Audit Kyiv daily labels against source intervals
