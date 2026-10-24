@@ -138,7 +138,7 @@ def main():
 
     with BINS_CSV.open("w", newline="", encoding="utf-8") as f:
         fields = ["threshold_minutes", "model", "bin", "n", "mean_predicted", "observed_rate", "absolute_gap"]
-        writer = csv.DictWriter(f, fieldnames=fields)
+        writer = csv.DictWriter(f, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         writer.writerows(bin_rows)
     SUMMARY.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
