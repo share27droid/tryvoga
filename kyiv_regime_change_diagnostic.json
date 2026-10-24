@@ -5,20 +5,26 @@
   "rows": 1695,
   "min_segment_days": 180,
   "method": "For each threshold, scan one split across the full series subject to at least 180 days on each side, selecting the split with greatest reduction in Bernoulli entropy versus one overall rate. This is exploratory and unadjusted for scanning many candidate dates.",
+  "caveats": [
+    "Exploratory scan only; the best date is selected after looking at all candidate dates, so the apparent change is optimistic.",
+    "No formal significance test or multiple-testing correction is applied.",
+    "Alert frequency is not attack frequency and cannot identify the cause of a change.",
+    "Source snapshot ends 2026-10-19 and the final 2026 half-year is partial."
+  ],
   "thresholds": {
     "60": {
       "overall_days": 1695,
       "overall_events": 222,
       "overall_rate": 0.130973,
       "best_single_split": {
-        "split_date": "2022-08-27",
-        "left_days": 180,
-        "left_events": 48,
-        "right_days": 1515,
-        "right_events": 174,
-        "left_rate": 0.266667,
-        "right_rate": 0.114851,
-        "entropy_gain_nats": 13.512
+        "split_date": "2023-03-24",
+        "left_days": 389,
+        "left_events": 105,
+        "right_days": 1306,
+        "right_events": 117,
+        "left_rate": 0.269923,
+        "right_rate": 0.089587,
+        "entropy_gain_nats": 37.333
       },
       "half_year_rates": {
         "2022-H1": {
@@ -78,14 +84,14 @@
       "overall_events": 99,
       "overall_rate": 0.058407,
       "best_single_split": {
-        "split_date": "2022-08-27",
-        "left_days": 180,
-        "left_events": 24,
-        "right_days": 1515,
-        "right_events": 75,
-        "left_rate": 0.133333,
-        "right_rate": 0.049505,
-        "entropy_gain_nats": 8.023
+        "split_date": "2023-01-01",
+        "left_days": 307,
+        "left_events": 41,
+        "right_days": 1388,
+        "right_events": 58,
+        "left_rate": 0.13355,
+        "right_rate": 0.041787,
+        "entropy_gain_nats": 15.635
       },
       "half_year_rates": {
         "2022-H1": {
@@ -145,14 +151,14 @@
       "overall_events": 33,
       "overall_rate": 0.019469,
       "best_single_split": {
-        "split_date": "2022-08-27",
-        "left_days": 180,
-        "left_events": 6,
-        "right_days": 1515,
-        "right_events": 27,
-        "left_rate": 0.033333,
-        "right_rate": 0.017822,
-        "entropy_gain_nats": 0.859
+        "split_date": "2026-04-23",
+        "left_days": 1515,
+        "left_events": 21,
+        "right_days": 180,
+        "right_events": 12,
+        "left_rate": 0.013861,
+        "right_rate": 0.066667,
+        "entropy_gain_nats": 7.869
       },
       "half_year_rates": {
         "2022-H1": {
