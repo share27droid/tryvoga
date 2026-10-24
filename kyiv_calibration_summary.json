@@ -63,6 +63,56 @@
         "expected_calibration_error_fixed_bins": 0.02795134,
         "brier_skill_vs_expanding": 0.06045171
       },
+      "rolling30_laplace": {
+        "n": 1330,
+        "event_count": 130,
+        "observed_rate": 0.09774436,
+        "mean_predicted_probability": 0.11849154,
+        "brier_score": 0.07290957,
+        "log_loss": 0.26514687,
+        "expected_calibration_error_fixed_bins": 0.03705357,
+        "brier_skill_vs_expanding": 0.21963006
+      },
+      "rolling60_laplace": {
+        "n": 1330,
+        "event_count": 130,
+        "observed_rate": 0.09774436,
+        "mean_predicted_probability": 0.10207373,
+        "brier_score": 0.07632146,
+        "log_loss": 0.27405118,
+        "expected_calibration_error_fixed_bins": 0.02021586,
+        "brier_skill_vs_expanding": 0.18311169
+      },
+      "rolling90_laplace": {
+        "n": 1330,
+        "event_count": 130,
+        "observed_rate": 0.09774436,
+        "mean_predicted_probability": 0.09596273,
+        "brier_score": 0.08015318,
+        "log_loss": 0.28624208,
+        "expected_calibration_error_fixed_bins": 0.02097091,
+        "brier_skill_vs_expanding": 0.14209979
+      },
+      "rolling180_laplace": {
+        "n": 1330,
+        "event_count": 130,
+        "observed_rate": 0.09774436,
+        "mean_predicted_probability": 0.09374948,
+        "brier_score": 0.08627674,
+        "log_loss": 0.30762616,
+        "expected_calibration_error_fixed_bins": 0.02459308,
+        "brier_skill_vs_expanding": 0.07655775
+      },
+      "rolling365_laplace": {
+        "n": 1330,
+        "event_count": 130,
+        "observed_rate": 0.09774436,
+        "mean_predicted_probability": 0.09905349,
+        "brier_score": 0.08776596,
+        "log_loss": 0.31568722,
+        "expected_calibration_error_fixed_bins": 0.02648378,
+        "brier_skill_vs_expanding": 0.0606183
+      },
       "expanding": {
         "n": 1330,
         "event_count": 130,
@@ -124,6 +174,56 @@
         "log_loss": 0.16676113,
         "expected_calibration_error_fixed_bins": 0.01036357,
         "brier_skill_vs_expanding": 0.04372304
+      },
+      "rolling30_laplace": {
+        "n": 1330,
+        "event_count": 55,
+        "observed_rate": 0.04135338,
+        "mean_predicted_probability": 0.06604793,
+        "brier_score": 0.03387057,
+        "log_loss": 0.14358012,
+        "expected_calibration_error_fixed_bins": 0.02911184,
+        "brier_skill_vs_expanding": 0.17457318
+      },
+      "rolling60_laplace": {
+        "n": 1330,
+        "event_count": 55,
+        "observed_rate": 0.04135338,
+        "mean_predicted_probability": 0.04764734,
+        "brier_score": 0.03465551,
+        "log_loss": 0.14200696,
+        "expected_calibration_error_fixed_bins": 0.02283531,
+        "brier_skill_vs_expanding": 0.15544399
+      },
+      "rolling90_laplace": {
+        "n": 1330,
+        "event_count": 55,
+        "observed_rate": 0.04135338,
+        "mean_predicted_probability": 0.0405443,
+        "brier_score": 0.03571544,
+        "log_loss": 0.14585988,
+        "expected_calibration_error_fixed_bins": 0.01059987,
+        "brier_skill_vs_expanding": 0.1296135
+      },
+      "rolling180_laplace": {
+        "n": 1330,
+        "event_count": 55,
+        "observed_rate": 0.04135338,
+        "mean_predicted_probability": 0.03578039,
+        "brier_score": 0.03811513,
+        "log_loss": 0.16111502,
+        "expected_calibration_error_fixed_bins": 0.0088697,
+        "brier_skill_vs_expanding": 0.07113299
+      },
+      "rolling365_laplace": {
+        "n": 1330,
+        "event_count": 55,
+        "observed_rate": 0.04135338,
+        "mean_predicted_probability": 0.03638114,
+        "brier_score": 0.03920751,
+        "log_loss": 0.16613643,
+        "expected_calibration_error_fixed_bins": 0.00559915,
+        "brier_skill_vs_expanding": 0.04451166
       },
       "expanding": {
         "n": 1330,
@@ -187,6 +287,56 @@
         "expected_calibration_error_fixed_bins": 0.0036978,
         "brier_skill_vs_expanding": 0.01288829
       },
+      "rolling30_laplace": {
+        "n": 1330,
+        "event_count": 19,
+        "observed_rate": 0.01428571,
+        "mean_predicted_probability": 0.04323308,
+        "brier_score": 0.01407278,
+        "log_loss": 0.0782917,
+        "expected_calibration_error_fixed_bins": 0.02894737,
+        "brier_skill_vs_expanding": 0.01020169
+      },
+      "rolling60_laplace": {
+        "n": 1330,
+        "event_count": 19,
+        "observed_rate": 0.01428571,
+        "mean_predicted_probability": 0.02666748,
+        "brier_score": 0.0135755,
+        "log_loss": 0.06970979,
+        "expected_calibration_error_fixed_bins": 0.01878487,
+        "brier_skill_vs_expanding": 0.04517768
+      },
+      "rolling90_laplace": {
+        "n": 1330,
+        "event_count": 19,
+        "observed_rate": 0.01428571,
+        "mean_predicted_probability": 0.0203171,
+        "brier_score": 0.01358554,
+        "log_loss": 0.06848058,
+        "expected_calibration_error_fixed_bins": 0.01139261,
+        "brier_skill_vs_expanding": 0.04447166
+      },
+      "rolling180_laplace": {
+        "n": 1330,
+        "event_count": 19,
+        "observed_rate": 0.01428571,
+        "mean_predicted_probability": 0.01503759,
+        "brier_score": 0.01389361,
+        "log_loss": 0.0720682,
+        "expected_calibration_error_fixed_bins": 0.00319755,
+        "brier_skill_vs_expanding": 0.02280325
+      },
+      "rolling365_laplace": {
+        "n": 1330,
+        "event_count": 19,
+        "observed_rate": 0.01428571,
+        "mean_predicted_probability": 0.01325521,
+        "brier_score": 0.01402202,
+        "log_loss": 0.07293552,
+        "expected_calibration_error_fixed_bins": 0.00103051,
+        "brier_skill_vs_expanding": 0.01377213
+      },
       "expanding": {
         "n": 1330,
         "event_count": 19,
@@ -204,6 +354,7 @@
     "Brier skill is relative to the expanding-history frequency baseline on identical rows.",
     "Fixed-bin calibration error depends on the chosen bins and is descriptive, not a standalone selection criterion.",
     "Log loss clips probabilities at 1e-15 to keep exact zero/one predictions finite.",
+    "Laplace-smoothed variants add one pseudo-event and one pseudo-non-event to each rolling window; this is a simple fixed smoothing rule, not tuned to the test period.",
     "Rare 120- and 180-minute outcomes have fewer events, so calibration estimates are noisy.",
     "No national attack predictors are included; the historical snapshot ends 2026-10-19 and is not live.",
     "This analysis does not establish operational safety; official alerts govern safety decisions."
