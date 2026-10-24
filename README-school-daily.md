@@ -14,6 +14,7 @@ This branch adds reproducible daily labels, lagged features, and a leakage-safe 
 - `diagnose_regime_changes.py` and `kyiv_regime_change_diagnostic.json`: exploratory scan for a single change point in the historical frequency of 60-, 120-, and 180-minute school-window alert days; descriptive, not causal proof.
 - `strategy_regime_hypothesis.md`: candidate attack-strategy change timeline and source limitations.
 - `attack_data_contract.md`: schema and no-leakage rules for national attack predictors; explicitly distinguishes event time from publication time.
+- `audit_attack_dataset.py` and `test_audit_attack_dataset.py`: audits retrospective attack CSV structure, source-reference format, publication-time fields, event-time syntax, and blank-versus-zero numeric values.
 - `import_attack_observations.py`: normalizes a downloaded historical attack CSV and emits a QA report; rows without a timezone-aware publication timestamp are excluded from as-of forecasting by default.
 - `enrich_attack_publication_times.py` and `test_enrich_attack_publication_times.py`: resolves publication timestamps only from exact public Telegram post URLs in the source column; generic dataset URLs and unresolved posts remain ineligible.
 - `build_attack_asof_features.py`: builds exploratory trailing 1/3/7-day national features at a Kyiv-local forecast cutoff, filtering out observations published after the cutoff and keeping missing sums distinct from zero.
@@ -51,10 +52,11 @@ python backtest_school_windows.py
 python evaluate_school_calibration.py
 python bootstrap_school_calibration.py
 python analyze_school_window_stability.py
-python -m unittest -v test_attack_pipeline.py test_tryvoga_sources.py test_tryvoga_school_labels.py test_audit_school_daily.py test_enrich_attack_publication_times.py test_summarize_manual_kyiv_alerts.py test_evaluate_school_calibration.py test_bootstrap_school_calibration.py
+python -m unittest -v test_attack_pipeline.py test_tryvoga_sources.py test_tryvoga_school_labels.py test_audit_school_daily.py test_audit_attack_dataset.py test_enrich_attack_publication_times.py test_summarize_manual_kyiv_alerts.py test_evaluate_school_calibration.py test_bootstrap_school_calibration.py
 python audit_tryvoga_sources.py
 python audit_school_daily.py --output kyiv_school_daily_audit.json
 # Optional, after manually downloading the public dataset CSV:
+python audit_attack_dataset.py --input missile_attacks_daily.csv --output attack_dataset_qa.json
 python import_attack_observations.py --input missile_attacks_daily.csv
 python enrich_attack_publication_times.py --input attack_observations_normalized.csv --delay-seconds 1
 python build_attack_asof_features.py --naive-event-timezone Europe/Kyiv
