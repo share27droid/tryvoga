@@ -19,7 +19,7 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 
-POST_URL = re.compile(r"^https?://(?:www\\.)?t\\.me/(?:s/)?([A-Za-z0-9_]+)/([0-9]+)(?:[/?#].*)?$", re.I)
+POST_URL = re.compile(r"^https?://(?:www\.)?t\.me/(?:s/)?([A-Za-z0-9_]+)/([0-9]+)(?:[/?#].*)?$", re.I)
 
 
 def telegram_post_ref(value: str) -> tuple[str, str] | None:
@@ -34,13 +34,13 @@ def telegram_post_ref(value: str) -> tuple[str, str] | None:
 
 def parse_exact_post_timestamp(html: str, channel: str, message_id: str) -> str | None:
     target = f"{channel}/{message_id}"
-    markers = list(re.finditer(r"data-post=[\\\"']([^\\\"']+)[\\\"']", html))
+    markers = list(re.finditer(r"""data-post=["']([^"']+)["']""", html))
     for index, marker in enumerate(markers):
         if unescape(marker.group(1)) != target:
             continue
         end = markers[index + 1].start() if index + 1 < len(markers) else len(html)
         section = html[marker.start():end]
-        times = re.findall(r"<time\\b[^>]*\\bdatetime=[\\\"']([^\\\"']+)[\\\"']", section, flags=re.I)
+        times = re.findall(r"""<time\b[^>]*\bdatetime=["']([^"']+)["']""", section, flags=re.I)
         for raw in times:
             try:
                 parsed = datetime.fromisoformat(unescape(raw).replace("Z", "+00:00"))
@@ -52,7 +52,10 @@ def parse_exact_post_timestamp(html: str, channel: str, message_id: str) -> str 
 
 
 def fetch_html(channel: str, message_id: str, timeout: float = 20.0) -> str:
-    request = Request(f"https://t.me/s/{channel}/{message_id}", headers={"User-Agent": "tryvoga-research/1.0 (public-source timestamp audit)"})
+    request = Request(
+        f"https://t.me/s/{channel}/{message_id}",
+        headers={"User-Agent": "tryvoga-research/1.0 (public-source timestamp audit)"},
+    )
     with urlopen(request, timeout=timeout) as response:
         return response.read().decode("utf-8", errors="replace")
 
@@ -61,9 +64,15 @@ def enrich_rows(rows: list[dict[str, str]], delay_seconds: float = 1.0,
                 overwrite_existing: bool = False, fetcher=fetch_html) -> tuple[list[dict[str, str]], dict]:
     if delay_seconds < 0:
         raise ValueError("delay_seconds must be >= 0")
-    qa = {"rows_in_input": len(rows), "resolved_from_telegram": 0,
-          "kept_existing_publication_timestamp": 0, "skipped_no_exact_telegram_post_url": 0,
-          "unresolved_post_timestamp": 0, "fetch_errors": 0, "errors": []}
+    qa = {
+        "rows_in_input": len(rows),
+        "resolved_from_telegram": 0,
+        "kept_existing_publication_timestamp": 0,
+        "skipped_no_exact_telegram_post_url": 0,
+        "unresolved_post_timestamp": 0,
+        "fetch_errors": 0,
+        "errors": [],
+    }
     output = []
     for row in rows:
         updated = dict(row)
@@ -106,8 +115,14 @@ def enrich_rows(rows: list[dict[str, str]], delay_seconds: float = 1.0,
         output.append(updated)
         if delay_seconds:
             time.sleep(delay_seconds)
-    qa["rows_eligible_by_timestamp_flag"] = sum((row.get("usable_for_asof_forecast") or "").lower() == "true" for row in output)
-    qa["caveat"] = "A timestamp is resolved only when the exact Telegram post URL matches a post block with a timezone-aware datetime. This verifies post publication time, not that every numeric value in a mutable retrospective CSV is an exact transcription of that post; review the post text and metric definitions before using values in a backtest."
+    qa["rows_eligible_by_timestamp_flag"] = sum(
+        (row.get("usable_for_asof_forecast") or "").lower() == "true" for row in output
+    )
+    qa["caveat"] = (
+        "A timestamp is resolved only when the exact Telegram post URL matches a post block with a timezone-aware datetime. "
+        "This verifies post publication time, not that every numeric value in a mutable retrospective CSV is an exact transcription "
+        "of that post; review the post text and metric definitions before using values in a backtest."
+    )
     return output, qa
 
 
@@ -130,7 +145,7 @@ def main() -> None:
         writer = csv.DictWriter(handle, fieldnames=fields, extrasaction="ignore")
         writer.writeheader()
         writer.writerows(enriched)
-    Path(args.qa).write_text(json.dumps(qa, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+    Path(args.qa).write_text(json.dumps(qa, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(qa, ensure_ascii=False, indent=2))
 
 
