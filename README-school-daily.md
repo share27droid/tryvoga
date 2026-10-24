@@ -17,6 +17,7 @@ This branch adds reproducible daily labels, lagged features, and a leakage-safe 
 - `build_attack_asof_features.py`: builds exploratory trailing 1/3/7-day national features at a Kyiv-local forecast cutoff, filtering out observations published after the cutoff and keeping missing counts distinct from zero.
 - `tryvoga-alerts.csv`, `tryvoga-daily.csv`, and `tryvoga-nights.csv`: user-added structured exports from tryvoga.live / official Air Force report links; currently short recent coverage only.
 - `audit_tryvoga_sources.py` and `test_tryvoga_sources.py`: structural QA for the three exports, including duplicate keys, interval-duration mismatches, open intervals, and publication-time limitations.
+- `build_tryvoga_school_labels.py` and `test_tryvoga_school_labels.py`: descriptive Kyiv City school-window totals and threshold labels from the interval export, with overlap merging and censoring safeguards.
 - `test_attack_pipeline.py`: standard-library regression tests for timestamp eligibility, future-publication exclusion, and missing-vs-zero handling.
 
 ## Method
@@ -37,11 +38,17 @@ python build_school_features.py
 python backtest_school_baselines.py
 python backtest_school_windows.py
 python analyze_school_window_stability.py
-python -m unittest -v test_attack_pipeline.py test_tryvoga_sources.py
+python -m unittest -v test_attack_pipeline.py test_tryvoga_sources.py test_tryvoga_school_labels.py
 python audit_tryvoga_sources.py
 # Optional, after manually downloading the public dataset CSV:
 python import_attack_observations.py --input missile_attacks_daily.csv
 python build_attack_asof_features.py --naive-event-timezone Europe/Kyiv
 ```
+
+To create a descriptive school-window label file from the tryvoga.live interval export, use only a date range for which source coverage has been verified and enter the actual export snapshot time (Kyiv local clock):
+```bash
+python build_tryvoga_school_labels.py --input tryvoga-alerts.csv --output tryvoga_kyiv_school_labels.csv --start-date YYYY-MM-DD --end-date YYYY-MM-DD --snapshot-as-of "YYYY-MM-DD HH:MM" --assume-source-complete
+```
+The script intentionally refuses to assume source coverage or infer a snapshot timestamp. Labels are blank for windows not fully elapsed at the snapshot or intersecting an interval that was still open at that snapshot. The output is descriptive, not a forecast-training dataset unless source completeness and historical availability are independently established.
 
 The attack-pipeline and source-audit tests use synthetic fixtures only. The current tryvoga.live exports cover 2026-10-05 through 2026-10-24 (alert intervals may begin/end on different dates), and therefore are not a replacement for the long Kyiv outcome history. The `tryvoga-nights.csv` `as_of` field is clock-only, not a date-time; do not treat it as a trustworthy publication timestamp. The daily regional export is retrospective and does not, by itself, prove when each reported value became available. These exports are useful for descriptive analysis and pipeline QA, but must not enter leakage-safe attack-feature backtests until publication/version availability is established. Passing tests checks code behavior, not the truth or historical availability of publication timestamps in a real source. Do not claim an as-of national attack backtest until that provenance is independently verified.
