@@ -40,6 +40,14 @@ def log_loss(probabilities, actual):
     return total / len(actual)
 
 
+def laplace_smooth_probability(probability, window):
+    """Add one pseudo-event and one pseudo-non-event to a rolling rate."""
+    if window <= 0:
+        raise ValueError("Window must be positive")
+    events = round(probability * window)
+    return (events + 1) / (window + 2)
+
+
 def calibration_bins(probabilities, actual):
     """Return populated fixed bins, including the right edge in the last bin."""
     result = []
@@ -101,6 +109,7 @@ def main():
             "Brier skill is relative to the expanding-history frequency baseline on identical rows.",
             "Fixed-bin calibration error depends on the chosen bins and is descriptive, not a standalone selection criterion.",
             "Log loss clips probabilities at 1e-15 to keep exact zero/one predictions finite.",
+            "Laplace-smoothed variants add one pseudo-event and one pseudo-non-event to each rolling window; this is a simple fixed smoothing rule, not tuned to the test period.",
             "Rare 120- and 180-minute outcomes have fewer events, so calibration estimates are noisy.",
             "No national attack predictors are included; the historical snapshot ends 2026-10-19 and is not live.",
             "This analysis does not establish operational safety; official alerts govern safety decisions."
@@ -113,9 +122,15 @@ def main():
             raise SystemExit(f"Outcomes for threshold {threshold} must be binary.")
         baseline = [float(row[f"expanding_ge{threshold}"]) for row in rows]
         threshold_results = {}
-        models = [f"rolling{window}" for window in WINDOWS] + ["expanding"]
+        models = ([f"rolling{window}" for window in WINDOWS]
+                  + [f"rolling{window}_laplace" for window in WINDOWS]
+                  + ["expanding"])
         for model in models:
-            probabilities = [float(row[f"{model}_ge{threshold}"]) for row in rows]
+            if model.endswith("_laplace"):
+                window = int(model[len("rolling"):-len("_laplace")])
+                probabilities = [laplace_smooth_probability(float(row[f"rolling{window}_ge{threshold}"]), window) for row in rows]
+            else:
+                probabilities = [float(row[f"{model}_ge{threshold}"]) for row in rows]
             if any(not math.isfinite(p) or p < 0 or p > 1 for p in probabilities):
                 raise SystemExit(f"Invalid probability in {model}_ge{threshold}.")
             result = evaluate(probabilities, actual, baseline)
