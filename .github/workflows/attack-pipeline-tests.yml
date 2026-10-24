@@ -32,6 +32,16 @@ jobs:
         run: diff -u /tmp/kyiv_calibration_summary.expected.json kyiv_calibration_summary.json
       - name: Check committed calibration bins are reproducible
         run: diff -u /tmp/kyiv_calibration_bins.expected.csv kyiv_calibration_bins.csv
+      - name: Audit committed historical attack CSV
+        run: python audit_attack_dataset.py --input missile_attacks_daily.csv --output /tmp/attack_dataset_qa.json
+      - name: Validate attack CSV provenance limits
+        run: python -c "import json; d=json.load(open('/tmp/attack_dataset_qa.json')); assert d['rows'] == 4285; assert d['columns'] == 22; assert not d['publication_timestamps_available_in_schema']; assert d['forecast_eligibility']['rows_eligible_from_this_file_alone'] == 0; print('Attack CSV audit:', d['rows'], 'rows; no publication timestamps; not eligible for as-of forecasting')"
+      - name: Upload attack dataset QA report
+        uses: actions/upload-artifact@v4
+        with:
+          name: attack-dataset-qa
+          path: /tmp/attack_dataset_qa.json
+          if-no-files-found: error
       - name: Run deterministic block-bootstrap uncertainty analysis
         run: python bootstrap_school_calibration.py --replicates 300 --block-days 14 --seed 20261024 > /tmp/kyiv_calibration_bootstrap.json
       - name: Validate block-bootstrap output
