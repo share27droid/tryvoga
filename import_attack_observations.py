@@ -100,6 +100,7 @@ def main() -> None:
         rows: list[dict[str, Any]] = []
         missing_start = missing_model = missing_publication = invalid_start = 0
         parsed_publication = 0
+        timezone_ambiguous_publication = 0
         for index, source_row in enumerate(reader, start=2):
             get = lambda key: (source_row.get(columns[key], "") or "").strip() if columns[key] else ""
             raw_start, raw_end = get("time_start"), get("time_end")
@@ -113,8 +114,17 @@ def main() -> None:
                 missing_model += 1
             if raw_start and not start_iso:
                 invalid_start += 1
+            publication_aware = False
+            if publication_iso:
+                try:
+                    publication_aware = datetime.fromisoformat(publication_iso).tzinfo is not None
+                except ValueError:
+                    publication_aware = False
             if not publication_raw or not publication_iso:
                 missing_publication += 1
+            elif not publication_aware:
+                missing_publication += 1
+                timezone_ambiguous_publication += 1
             else:
                 parsed_publication += 1
 
@@ -136,8 +146,8 @@ def main() -> None:
                 "source_name": args.source_name,
                 "source_url": source_url,
                 "published_at": publication_iso,
-                "publication_time_status": "observed" if publication_iso else "unavailable",
-                "usable_for_asof_forecast": "true" if publication_iso else "false",
+                "publication_time_status": "observed_timezone_aware" if publication_aware else ("timezone_ambiguous" if publication_iso else "unavailable"),
+                "usable_for_asof_forecast": "true" if publication_aware else "false",
                 "definition_note": (
                     "Retrospective source row; verify reporting interval, metric definitions, "
                     "and publication timestamp before forecasting. Blank counts are unknown, not zero."
@@ -160,10 +170,12 @@ def main() -> None:
         "invalid_event_start_rows": invalid_start,
         "missing_model_rows": missing_model,
         "rows_with_parseable_publication_timestamp": parsed_publication,
-        "rows_without_parseable_publication_timestamp": missing_publication,
+        "rows_without_usable_publication_timestamp": missing_publication,
+        "rows_with_timezone_ambiguous_publication_timestamp": timezone_ambiguous_publication,
         "rows_eligible_for_asof_forecast": parsed_publication,
         "warnings": [
             "Event time is not publication time; never substitute event_start for published_at.",
+            "Publication timestamps without a timezone offset are marked unusable until their timezone is verified."
             "A row is not leakage-safe merely because a publication timestamp exists; confirm it refers to that exact value/version.",
             "Blank numeric values remain blank and must not be interpreted as zero.",
             "Do not merge different source definitions (launched, detected, intercepted, impacts) into a single count.",
