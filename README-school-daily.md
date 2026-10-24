@@ -33,6 +33,10 @@ This branch adds reproducible daily labels, lagged features, and a leakage-safe 
 - Calibration metrics are descriptive diagnostics on the same common walk-forward period. Fixed-bin calibration error depends on the chosen bins; rare 120/180-minute events make estimates noisy. Brier skill is relative to the expanding-history baseline.
 - The snapshot is historical, not a live feed. These baseline results are not the four-model comparison and do not establish operational safety.
 
+## Probability calibration
+
+`evaluate_school_calibration.py` evaluates the raw rolling-window probabilities and Laplace-smoothed variants on the existing 1,330-day common walk-forward test period. The smoothed variant uses `(events + 1) / (window_days + 2)` to avoid exact zero/one probabilities. This improves log loss in the current retrospective comparison, especially for rare events, but can worsen Brier score or shift average probabilities upward; it is a diagnostic comparison, not a production-model selection. See `kyiv_calibration_summary.json` and `kyiv_calibration_bins.csv`. Calibration results depend on this historical snapshot and do not establish live forecast quality.
+
 ## Rebuild and test
 Run from the repository root:
 \`\`\`bash
