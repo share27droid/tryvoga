@@ -12,7 +12,7 @@ This branch adds reproducible daily labels, lagged features, and a leakage-safe 
 - `evaluate_adaptive_regime.py`, `kyiv_adaptive_regime_predictions.csv`, and `kyiv_adaptive_regime_summary.json`: exploratory blend of 30- and 90-day rates that gives more weight to the 30-day estimate when the two disagree. This is a benchmark only, not a production forecast.
 - `diagnose_regime_changes.py` and `kyiv_regime_change_diagnostic.json`: exploratory scan for a single change point in the historical frequency of 60-, 120-, and 180-minute school-window alert days; it is descriptive and not causal proof.
 - `strategy_regime_hypothesis.md`: candidate strategy-change timeline and source limitations.
-- `attack_data_contract.md`: schema and no-leakage rules for the next step, adding national attack predictors.
+- `attack_data_contract.md`: schema and no-leakage rules for national attack predictors; explicitly distinguishes event time from publication time.\n- `import_attack_observations.py`: normalizes a downloaded historical attack CSV and emits a QA report; rows without a verifiable publication timestamp are excluded from as-of forecasting by default.
 
 ## Method
 - School window: 08:30–15:00, Kyiv local clock as recorded in the source.
@@ -32,4 +32,6 @@ python build_school_features.py
 python backtest_school_baselines.py
 python backtest_school_windows.py
 python analyze_school_window_stability.py
+# Optional, after manually downloading the public dataset CSV:
+python import_attack_observations.py --input missile_attacks_daily.csv
 ```
