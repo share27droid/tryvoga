@@ -1,0 +1,62 @@
+name: Attack feature pipeline tests
+
+on:
+  push:
+    branches:
+      - analysis/kyiv-school-daily-features
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  attack-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run attack, source-audit, school-label, historical-data, publication-time, and calibration tests
+        run: python -m unittest -v test_attack_pipeline.py test_tryvoga_sources.py test_tryvoga_school_labels.py test_audit_school_daily.py test_enrich_attack_publication_times.py test_summarize_manual_kyiv_alerts.py test_evaluate_school_calibration.py test_bootstrap_school_calibration.py test_audit_attack_dataset.py
+      - name: Preserve committed calibration outputs for reproducibility check
+        run: cp kyiv_calibration_summary.json /tmp/kyiv_calibration_summary.expected.json && cp kyiv_calibration_bins.csv /tmp/kyiv_calibration_bins.expected.csv
+      - name: Evaluate calibration of walk-forward school baseline probabilities
+        run: python evaluate_school_calibration.py
+      - name: Check committed calibration summary is reproducible
+        run: diff -u /tmp/kyiv_calibration_summary.expected.json kyiv_calibration_summary.json
+      - name: Check committed calibration bins are reproducible
+        run: diff -u /tmp/kyiv_calibration_bins.expected.csv kyiv_calibration_bins.csv
+      - name: Audit committed historical attack CSV
+        run: python audit_attack_dataset.py --input missile_attacks_daily.csv --output /tmp/attack_dataset_qa.json
+      - name: Validate attack CSV provenance limits
+        run: python -c "import json; d=json.load(open('/tmp/attack_dataset_qa.json')); assert d['rows'] == 4285; assert d['columns'] == 22; assert not d['publication_timestamps_available_in_schema']; assert d['forecast_eligibility']['rows_eligible_from_this_file_alone'] == 0; print('Attack CSV audit:', d['rows'], 'rows; no publication timestamps; not eligible for as-of forecasting')"
+      - name: Upload attack dataset QA report
+        uses: actions/upload-artifact@v4
+        with:
+          name: attack-dataset-qa
+          path: /tmp/attack_dataset_qa.json
+          if-no-files-found: error
+      - name: Run deterministic block-bootstrap uncertainty analysis
+        run: python bootstrap_school_calibration.py --replicates 300 --block-days 14 --seed 20261024 > /tmp/kyiv_calibration_bootstrap.json
+      - name: Validate block-bootstrap output
+        run: python -c "import json; d=json.load(open('/tmp/kyiv_calibration_bootstrap.json')); assert d['test_days'] == 1330; assert set(d['metrics']) == {'60','120','180'}; assert all('brier_score_95pct_block_bootstrap_interval' in m for group in d['metrics'].values() for m in group.values()); print('Bootstrap uncertainty output valid for', d['test_days'], 'days')"
+      - name: Upload calibration uncertainty report
+        uses: actions/upload-artifact@v4
+        with:
+          name: kyiv-calibration-bootstrap
+          path: /tmp/kyiv_calibration_bootstrap.json
+          if-no-files-found: error
+      - name: Rebuild descriptive summary of manually transcribed Kyiv alerts
+        run: python summarize_manual_kyiv_alerts.py --input kyiv-manual-alerts.csv --output /tmp/kyiv-manual-school-summary.csv
+      - name: Check committed manual summary is reproducible
+        run: diff -u kyiv-manual-school-summary.csv /tmp/kyiv-manual-school-summary.csv
+      - name: Audit committed tryvoga CSV exports
+        run: python audit_tryvoga_sources.py --output /tmp/tryvoga_sources_qa.json
+      - name: Audit Kyiv daily labels against source intervals
+        run: python audit_school_daily.py --output /tmp/kyiv_school_daily_audit.json

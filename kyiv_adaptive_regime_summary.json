@@ -1,0 +1,34 @@
+{
+  "source": "kyiv_window_predictions.csv",
+  "source_first_date": "2023-02-28",
+  "source_last_date": "2026-10-19",
+  "test_days": 1330,
+  "method": "For each threshold, p_adaptive = w*p30 + (1-w)*p90; w = clamp(0.25 + 4*abs(p30-p90), 0.25, 0.80). All probabilities are based only on observations before the target day.",
+  "metrics": {
+    "60": {
+      "event_count": 130,
+      "brier_rolling30": 0.072612,
+      "brier_rolling90": 0.080276,
+      "brier_adaptive_regime_blend": 0.07297
+    },
+    "120": {
+      "event_count": 55,
+      "brier_rolling30": 0.033324,
+      "brier_rolling90": 0.035794,
+      "brier_adaptive_regime_blend": 0.033387
+    },
+    "180": {
+      "event_count": 19,
+      "brier_rolling30": 0.013273,
+      "brier_rolling90": 0.013566,
+      "brier_adaptive_regime_blend": 0.013243
+    }
+  },
+  "interpretation": "Exploratory, pre-declared regime-sensitive blend. It does not materially beat rolling-30 overall on 60- or 120-minute outcomes; a very small improvement appears for 180 minutes. This does not establish that strategy change caused the regime shift. No attack-weapon predictors are included.",
+  "caveats": [
+    "Historical snapshot ends 2026-10-19 and is not live.",
+    "30-day baseline remains best on the aggregate common test period; adaptive blend is not a replacement recommendation yet.",
+    "The 180-minute threshold has few events; small Brier differences are unstable.",
+    "A separate historical attack dataset with publication timestamps is needed to test whether weapon mix/daytime-wave features add predictive value without leakage."
+  ]
+}
