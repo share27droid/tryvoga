@@ -1,2 +1,186 @@
-<?xml version="1.0" encoding="utf-8"?>
-<root><current><state>0</state><causes/><last_cause/><created_at>2026-10-29 10:14:49</created_at></current><stats><total_alerts>2797</total_alerts><total_lasts_for>11529242</total_lasts_for></stats></root>
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Запит на доступ до API</title>
+    <style>
+        @font-face {
+            font-family: 'SF Pro Display';
+            src: url('/fonts/SFProDisplay-Medium.woff') format('woff');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'SF Pro Display';
+            src: url('/fonts/SFProDisplay-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'SF Pro Display';
+            src: url('/fonts/SFProDisplay-Semibold.woff') format('woff');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+        * {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        html, body {
+            min-height: 100%;
+        }
+        body {
+            font-family: 'SF Pro Display', Verdana, sans-serif;
+            font-size: 16px;
+            color: #1c1c1e;
+            background: #f7f7f7;
+            margin: 0;
+        }
+        .page {
+            max-width: 520px;
+            margin: 0 auto;
+            padding: 16px 12px 40px;
+        }
+        .header {
+            display: flex;
+            justify-content: center;
+            padding: 8px 0 16px;
+        }
+        i.logo {
+            display: block;
+            height: 60px;
+            width: 170px;
+            background: url('/i/kd_logo.svg') center / contain no-repeat;
+        }
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 20px 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 1.25;
+            margin: 0 0 12px;
+        }
+        p.description {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #3c3c43;
+            margin: 0;
+        }
+        label {
+            display: block;
+            font-size: 14px;
+            color: #8e8e93;
+            margin-bottom: 6px;
+        }
+        .field {
+            margin-bottom: 16px;
+        }
+        input[type="text"], textarea {
+            -webkit-appearance: none;
+            width: 100%;
+            border: 1px solid #e4e4e4;
+            border-radius: 12px;
+            padding: 12px;
+            font: inherit;
+            line-height: 1.4;
+            color: inherit;
+            background: #fff;
+            outline: none;
+        }
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        input[type="text"]:focus, textarea:focus {
+            border-color: #3d85f7;
+        }
+        button, a.button {
+            -webkit-appearance: none;
+            display: block;
+            width: 100%;
+            border: none;
+            border-radius: 12px;
+            background: #3d85f7;
+            color: #fff;
+            font: inherit;
+            font-weight: 500;
+            text-align: center;
+            text-decoration: none;
+            padding: 15px 22px;
+            cursor: pointer;
+        }
+        button.id-gov-ua {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            background: #000;
+            border-radius: 25px;
+            height: 48px;
+            padding: 0 22px;
+        }
+        a.button.secondary {
+            background: #ebebeb;
+            color: #1c1c1e;
+            margin-top: 8px;
+        }
+        .error-message {
+            color: #721c24;
+            background: #f8d7da;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 16px;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+        .token {
+            word-break: break-all;
+            border: 1px solid #e4e4e4;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 16px;
+            font-family: monospace;
+            font-size: 15px;
+            user-select: all;
+        }
+    </style>
+    </head>
+<body>
+<div class="page">
+    <div class="header"><i class="logo"></i></div>
+        <div class="card">
+        <h1>Запит на доступ до API</h1>
+        <p class="description">Щоб почати використовувати API тривог застосунку “Київ Цифровий” потрібно зареєструвати клієнта та отримати API-токен.</p>
+    </div>
+    <form action="https://kyiv.digital/open-api/register" method="POST">
+        <div class="card">
+            
+            <div class="field">
+                <label for="name">ПІБ/Назва компанії</label>
+                <input id="name" type="text" name="name" autocomplete="off"
+                       required minlength="2" maxlength="150" value="">
+            </div>
+            <div class="field">
+                <label for="description">Для чого потрібно API</label>
+                <textarea id="description" name="description"
+                          required minlength="10" maxlength="1000"></textarea>
+            </div>
+            <button type="submit" class="id-gov-ua">
+                Продовжити з
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTMzNyIgaGVpZ2h0PSIzNjAiIHZpZXdCb3g9IjAgMCAxMzM3IDM2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzcyNl8zNjU0KSI+CjxwYXRoIGQ9Ik03OTQgMEg0MzRDMzM0LjU4OSAwIDI1NCA4MC41ODg3IDI1NCAxODBDMjU0IDI3OS40MTEgMzM0LjU4OSAzNjAgNDM0IDM2MEg3OTRDODkzLjQxMSAzNjAgOTc0IDI3OS40MTEgOTc0IDE4MEM5NzQgODAuNTg4NyA4OTMuNDExIDAgNzk0IDBaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNjE0IDI2MEM1OTguMTc4IDI2MCA1ODIuNzEgMjU1LjMwOCA1NjkuNTU0IDI0Ni41MThDNTU2LjM5OCAyMzcuNzI3IDU0Ni4xNDUgMjI1LjIzMyA1NDAuMDkgMjEwLjYxNUM1MzQuMDM1IDE5NS45OTcgNTMyLjQ1IDE3OS45MTEgNTM1LjUzNyAxNjQuMzkzQzUzOC42MjQgMTQ4Ljg3NCA1NDYuMjQzIDEzNC42MiA1NTcuNDMxIDEyMy40MzFDNTY4LjYyIDExMi4yNDMgNTgyLjg3NCAxMDQuNjI0IDU5OC4zOTMgMTAxLjUzN0M2MTMuOTExIDk4LjQ1MDQgNjI5Ljk5NyAxMDAuMDM1IDY0NC42MTUgMTA2LjA5QzY1OS4yMzMgMTEyLjE0NSA2NzEuNzI3IDEyMi4zOTggNjgwLjUxOCAxMzUuNTU0QzY4OS4zMDggMTQ4LjcxIDY5NCAxNjQuMTc4IDY5NCAxODBDNjkzLjk3NiAyMDEuMjEgNjg1LjU0IDIyMS41NDUgNjcwLjU0MiAyMzYuNTQyQzY1NS41NDUgMjUxLjU0IDYzNS4yMSAyNTkuOTc2IDYxNCAyNjBWMjYwWk02MTQgMTMwQzYwNC4xMTEgMTMwIDU5NC40NDQgMTMyLjkzMiA1ODYuMjIyIDEzOC40MjdDNTc3Ljk5OSAxNDMuOTIxIDU3MS41OSAxNTEuNzMgNTY3LjgwNiAxNjAuODY2QzU2NC4wMjIgMTcwLjAwMiA1NjMuMDMyIDE4MC4wNTYgNTY0Ljk2MSAxODkuNzU1QzU2Ni44OSAxOTkuNDU0IDU3MS42NTIgMjA4LjM2MyA1NzguNjQ1IDIxNS4zNTVDNTg1LjYzNyAyMjIuMzQ4IDU5NC41NDYgMjI3LjExIDYwNC4yNDYgMjI5LjAzOUM2MTMuOTQ1IDIzMC45NjkgNjIzLjk5OCAyMjkuOTc4IDYzMy4xMzQgMjI2LjE5NEM2NDIuMjcgMjIyLjQxIDY1MC4wNzkgMjE2LjAwMSA2NTUuNTc0IDIwNy43NzlDNjYxLjA2OCAxOTkuNTU2IDY2NCAxODkuODg5IDY2NCAxODBDNjYzLjk4NCAxNjYuNzQ0IDY1OC43MTEgMTU0LjAzNiA2NDkuMzM4IDE0NC42NjJDNjM5Ljk2NCAxMzUuMjg5IDYyNy4yNTYgMTMwLjAxNiA2MTQgMTMwVjEzMFoiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGQ9Ik0xMDkzIDI2MEMxMDcxLjc5IDI1OS45NzYgMTA1MS40NiAyNTEuNTQgMTAzNi40NiAyMzYuNTQyQzEwMjEuNDYgMjIxLjU0NCAxMDEzLjAyIDIwMS4yMSAxMDEzIDE4MFYxMTVDMTAxMyAxMTEuMDIyIDEwMTQuNTggMTA3LjIwNiAxMDE3LjM5IDEwNC4zOTNDMTAyMC4yMSAxMDEuNTggMTAyNC4wMiAxMDAgMTAyOCAxMDBDMTAzMS45OCAxMDAgMTAzNS43OSAxMDEuNTggMTAzOC42MSAxMDQuMzkzQzEwNDEuNDIgMTA3LjIwNiAxMDQzIDExMS4wMjIgMTA0MyAxMTVWMTgwQzEwNDMgMTkzLjI2MSAxMDQ4LjI3IDIwNS45NzkgMTA1Ny42NCAyMTUuMzU1QzEwNjcuMDIgMjI0LjczMiAxMDc5Ljc0IDIzMCAxMDkzIDIzMEMxMTA2LjI2IDIzMCAxMTE4Ljk4IDIyNC43MzIgMTEyOC4zNiAyMTUuMzU1QzExMzcuNzMgMjA1Ljk3OSAxMTQzIDE5My4yNjEgMTE0MyAxODBWMTE1QzExNDMgMTExLjAyMiAxMTQ0LjU4IDEwNy4yMDYgMTE0Ny4zOSAxMDQuMzkzQzExNTAuMjEgMTAxLjU4IDExNTQuMDIgMTAwIDExNTggMTAwQzExNjEuOTggMTAwIDExNjUuNzkgMTAxLjU4IDExNjguNjEgMTA0LjM5M0MxMTcxLjQyIDEwNy4yMDYgMTE3MyAxMTEuMDIyIDExNzMgMTE1VjE4MEMxMTcyLjk4IDIwMS4yMSAxMTY0LjU0IDIyMS41NDQgMTE0OS41NCAyMzYuNTQyQzExMzQuNTQgMjUxLjU0IDExMTQuMjEgMjU5Ljk3NiAxMDkzIDI2MFYyNjBaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNzg1IDI2MEM3ODIuMTczIDI2MCA3NzkuNDA1IDI1OS4yIDc3Ny4wMTMgMjU3LjY5NUM3NzQuNjIxIDI1Ni4xODkgNzcyLjcwMyAyNTQuMDM4IDc3MS40OCAyNTEuNDlMNzExLjQ4IDEyNi40OUM3MDkuOTczIDEyMi45NDEgNzA5Ljg5IDExOC45NDggNzExLjI1IDExNS4zNEM3MTIuNjA5IDExMS43MzEgNzE1LjMwNSAxMDguNzg1IDcxOC43NzkgMTA3LjExMkM3MjIuMjU0IDEwNS40NCA3MjYuMjM4IDEwNS4xNjkgNzI5LjkwNyAxMDYuMzU2QzczMy41NzUgMTA3LjU0NCA3MzYuNjQ1IDExMC4wOTkgNzM4LjQ4IDExMy40OUw3ODUgMjEwLjM0TDgzMS40OCAxMTMuNTFDODMyLjI3MyAxMTEuNjQyIDgzMy40MzcgMTA5Ljk1NSA4MzQuOTAxIDEwOC41NUM4MzYuMzY2IDEwNy4xNDUgODM4LjEgMTA2LjA1MSA4MzkuOTk5IDEwNS4zMzZDODQxLjg5OCAxMDQuNjIxIDg0My45MjMgMTA0LjI5OCA4NDUuOTUgMTA0LjM4OEM4NDcuOTc3IDEwNC40NzcgODQ5Ljk2NSAxMDQuOTc4IDg1MS43OTQgMTA1Ljg1OEM4NTMuNjIyIDEwNi43MzggODU1LjI1MyAxMDcuOTgxIDg1Ni41ODggMTA5LjUxQzg1Ny45MjIgMTExLjAzOCA4NTguOTMyIDExMi44MjIgODU5LjU1NyAxMTQuNzUzQzg2MC4xODIgMTE2LjY4NCA4NjAuNDA5IDExOC43MjEgODYwLjIyNCAxMjAuNzQyQzg2MC4wMzkgMTIyLjc2MyA4NTkuNDQ1IDEyNC43MjUgODU4LjQ4IDEyNi41MUw3OTguNDggMjUxLjUxQzc5Ny4yNTcgMjU0LjA0OCA3OTUuMzQ0IDI1Ni4xOTEgNzkyLjk2IDI1Ny42OTNDNzkwLjU3NiAyNTkuMTk0IDc4Ny44MTcgMjU5Ljk5NCA3ODUgMjYwWiIgZmlsbD0iYmxhY2siLz4KPHBhdGggZD0iTTEzMjEuODMgMjYwQzEzMTkgMjYwLjAwMyAxMzE2LjIzIDI1OS4yMDYgMTMxMy44MyAyNTcuN0MxMzExLjQ0IDI1Ni4xOTQgMTMwOS41MSAyNTQuMDQxIDEzMDguMjkgMjUxLjQ5TDEyNjEuODIgMTU0LjY2TDEyMTUuMzQgMjUxLjQ5QzEyMTMuNTEgMjU0Ljg4MSAxMjEwLjQ0IDI1Ny40MzYgMTIwNi43NyAyNTguNjI0QzEyMDMuMSAyNTkuODExIDExOTkuMTEgMjU5LjU0MSAxMTk1LjY0IDI1Ny44NjhDMTE5Mi4xNyAyNTYuMTk1IDExODkuNDcgMjUzLjI0OSAxMTg4LjExIDI0OS42NDFDMTE4Ni43NSAyNDYuMDMyIDExODYuODMgMjQyLjAzOSAxMTg4LjM0IDIzOC40OUwxMjQ4LjM0IDExMy40OUMxMjQ5LjU3IDExMC45NTQgMTI1MS40OSAxMDguODE1IDEyNTMuODcgMTA3LjMxOUMxMjU2LjI2IDEwNS44MjIgMTI1OS4wMiAxMDUuMDI4IDEyNjEuODQgMTA1LjAyOEMxMjY0LjY2IDEwNS4wMjggMTI2Ny40MiAxMDUuODIyIDEyNjkuODEgMTA3LjMxOUMxMjcyLjE5IDEwOC44MTUgMTI3NC4xMSAxMTAuOTU0IDEyNzUuMzQgMTEzLjQ5TDEzMzUuMzQgMjM4LjQ5QzEzMzYuNDQgMjQwLjc3NiAxMzM2Ljk0IDI0My4zMDUgMTMzNi44IDI0NS44MzlDMTMzNi42NiAyNDguMzczIDEzMzUuODggMjUwLjgyOSAxMzM0LjUzIDI1Mi45NzhDMTMzMy4xOCAyNTUuMTI3IDEzMzEuMzEgMjU2Ljg5OSAxMzI5LjA4IDI1OC4xMjdDMTMyNi44NiAyNTkuMzU1IDEzMjQuMzcgMjU5Ljk5OSAxMzIxLjgzIDI2MFoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik00MzIgMjYwQzQxOC44NDQgMjYwIDQwNS44OTEgMjU2Ljc1NSAzOTQuMjg5IDI1MC41NTNDMzgyLjY4NyAyNDQuMzUxIDM3Mi43OTMgMjM1LjM4MyAzNjUuNDg0IDIyNC40NDRDMzU4LjE3NiAyMTMuNTA1IDM1My42NzcgMjAwLjkzMyAzNTIuMzg4IDE4Ny44NEMzNTEuMDk5IDE3NC43NDggMzUzLjA1OCAxNjEuNTM5IDM1OC4wOTMgMTQ5LjM4NUMzNjMuMTI3IDEzNy4yMzEgMzcxLjA4MiAxMjYuNTA1IDM4MS4yNTEgMTE4LjE1OUMzOTEuNDIxIDEwOS44MTMgNDAzLjQ5MiAxMDQuMTA0IDQxNi4zOTUgMTAxLjUzN0M0MjkuMjk4IDk4Ljk3MDYgNDQyLjYzNSA5OS42MjU2IDQ1NS4yMjQgMTAzLjQ0NEM0NjcuODE0IDEwNy4yNjMgNDc5LjI2NyAxMTQuMTI4IDQ4OC41NyAxMjMuNDNDNDkwLjAwMyAxMjQuODE0IDQ5MS4xNDUgMTI2LjQ2OSA0OTEuOTMyIDEyOC4yOTlDNDkyLjcxOCAxMzAuMTI5IDQ5My4xMzEgMTMyLjA5NyA0OTMuMTQ5IDEzNC4wODlDNDkzLjE2NiAxMzYuMDgxIDQ5Mi43ODcgMTM4LjA1NiA0OTIuMDMyIDEzOS44OTlDNDkxLjI3OCAxNDEuNzQzIDQ5MC4xNjQgMTQzLjQxOCA0ODguNzU2IDE0NC44MjZDNDg3LjM0OCAxNDYuMjM0IDQ4NS42NzMgMTQ3LjM0OCA0ODMuODI5IDE0OC4xMDJDNDgxLjk4NiAxNDguODU3IDQ4MC4wMTEgMTQ5LjIzNiA0NzguMDE5IDE0OS4yMTlDNDc2LjAyNyAxNDkuMjAxIDQ3NC4wNTkgMTQ4Ljc4OCA0NzIuMjI5IDE0OC4wMDJDNDcwLjM5OSAxNDcuMjE1IDQ2OC43NDQgMTQ2LjA3MyA0NjcuMzYgMTQ0LjY0QzQ1OS42NDIgMTM2LjkyMiA0NDkuNjExIDEzMS45NDIgNDM4Ljc5NyAxMzAuNDU5QzQyNy45ODQgMTI4Ljk3NiA0MTYuOTgyIDEzMS4wNzIgNDA3LjQ3MiAxMzYuNDI4QzM5Ny45NjEgMTQxLjc4MyAzOTAuNDY0IDE1MC4xMDMgMzg2LjEyNSAxNjAuMTE5QzM4MS43ODYgMTcwLjEzNCAzODAuODQ0IDE4MS4yOTQgMzgzLjQ0MSAxOTEuODk1QzM4Ni4wMzkgMjAyLjQ5NiAzOTIuMDM0IDIxMS45NTYgNDAwLjUxMiAyMTguODMxQzQwOC45ODkgMjI1LjcwNSA0MTkuNDg0IDIyOS42MTcgNDMwLjM5MyAyMjkuOTY5QzQ0MS4zMDIgMjMwLjMyMSA0NTIuMDI2IDIyNy4wOTQgNDYwLjkyOSAyMjAuNzhDNDY5LjgzMiAyMTQuNDY2IDQ3Ni40MjUgMjA1LjQxMiA0NzkuNyAxOTVINDMyQzQyOC4wMjIgMTk1IDQyNC4yMDYgMTkzLjQyIDQyMS4zOTMgMTkwLjYwN0M0MTguNTggMTg3Ljc5NCA0MTcgMTgzLjk3OCA0MTcgMTgwQzQxNyAxNzYuMDIyIDQxOC41OCAxNzIuMjA2IDQyMS4zOTMgMTY5LjM5M0M0MjQuMjA2IDE2Ni41OCA0MjguMDIyIDE2NSA0MzIgMTY1SDQ5N0M1MDAuOTc4IDE2NSA1MDQuNzk0IDE2Ni41OCA1MDcuNjA3IDE2OS4zOTNDNTEwLjQyIDE3Mi4yMDYgNTEyIDE3Ni4wMjIgNTEyIDE4MEM1MTEuOTc2IDIwMS4yMSA1MDMuNTQgMjIxLjU0NCA0ODguNTQyIDIzNi41NDJDNDczLjU0NSAyNTEuNTQgNDUzLjIxIDI1OS45NzYgNDMyIDI2MFYyNjBaIiBmaWxsPSJibGFjayIvPgo8cGF0aCBkPSJNMTQxIDEwMEg3NkM3Mi4wMjE4IDEwMCA2OC4yMDY0IDEwMS41OCA2NS4zOTM0IDEwNC4zOTNDNjIuNTgwMyAxMDcuMjA2IDYxIDExMS4wMjIgNjEgMTE1VjI0NUM2MSAyNDguOTc4IDYyLjU4MDMgMjUyLjc5NCA2NS4zOTM0IDI1NS42MDdDNjguMjA2NCAyNTguNDIgNzIuMDIxOCAyNjAgNzYgMjYwSDE0MUMxNjIuMjE3IDI2MCAxODIuNTY2IDI1MS41NzEgMTk3LjU2OSAyMzYuNTY5QzIxMi41NzEgMjIxLjU2NiAyMjEgMjAxLjIxNyAyMjEgMTgwQzIyMSAxNTguNzgzIDIxMi41NzEgMTM4LjQzNCAxOTcuNTY5IDEyMy40MzFDMTgyLjU2NiAxMDguNDI5IDE2Mi4yMTcgMTAwIDE0MSAxMDBaTTE0MSAyMzBIOTFWMTMwSDE0MUMxNTQuMjYxIDEzMCAxNjYuOTc5IDEzNS4yNjggMTc2LjM1NSAxNDQuNjQ1QzE4NS43MzIgMTU0LjAyMSAxOTEgMTY2LjczOSAxOTEgMTgwQzE5MSAxOTMuMjYxIDE4NS43MzIgMjA1Ljk3OSAxNzYuMzU1IDIxNS4zNTVDMTY2Ljk3OSAyMjQuNzMyIDE1NC4yNjEgMjMwIDE0MSAyMzBWMjMwWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTE1IDEwMEMxMS4wMjE4IDEwMCA3LjIwNjQ0IDEwMS41OCA0LjM5MzQgMTA0LjM5M0MxLjU4MDM1IDEwNy4yMDYgMCAxMTEuMDIyIDAgMTE1TDAgMjQ1QzAgMjQ4Ljk3OCAxLjU4MDM1IDI1Mi43OTQgNC4zOTM0IDI1NS42MDdDNy4yMDY0NCAyNTguNDIgMTEuMDIxOCAyNjAgMTUgMjYwQzE4Ljk3ODIgMjYwIDIyLjc5MzYgMjU4LjQyIDI1LjYwNjYgMjU1LjYwN0MyOC40MTk2IDI1Mi43OTQgMzAgMjQ4Ljk3OCAzMCAyNDVWMTE1QzMwIDExMS4wMjIgMjguNDE5NiAxMDcuMjA2IDI1LjYwNjYgMTA0LjM5M0MyMi43OTM2IDEwMS41OCAxOC45NzgyIDEwMCAxNSAxMDBaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTIxNS45NCAxOTguMzMySDEzMDMuMjhaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTIxNS45NCAxOTguMzMySDEzMDMuMjgiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iOS4yNzUyMiIvPgo8cGF0aCBkPSJNMTIxNy4xMiAyMDcuMDVIMTMwNC40NloiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0xMjE3LjEyIDIwNy4wNUgxMzA0LjQ2IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjkuMjc1MjIiLz4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMF83MjZfMzY1NCI+CjxyZWN0IHdpZHRoPSIxMzM2LjgyIiBoZWlnaHQ9IjM2MCIgZmlsbD0id2hpdGUiLz4KPC9jbGlwUGF0aD4KPC9kZWZzPgo8L3N2Zz4K" class="object-contain select-none" style="height: 24px;margin-left: 10px;padding-top: 2px;">
+            </button>
+        </div>
+    </form>
+</div>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a5340537ceaf9b2c',t:'MTc5MzQ2Mzk3NQ=='};var l=window.parent.location,o;try{o=new URL(l.origin).origin}catch(e){try{o=new URL(new URL(l.href).origin).origin}catch(e){o=''}}var u='/cdn-cgi/challenge-platform/scripts/jsd/main.js?ray=a5340537ceaf9b2c',a=document.createElement('script');a.src=o?new URL(u,o).href:u;document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

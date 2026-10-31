@@ -1,0 +1,91 @@
+{
+  "dataset": {
+    "dataset_id": "bb0f27d3-00e2-414a-9d6e-a8b6633f8a2a",
+    "dataset_title": "Статистика повітряних тривог у місті Києві",
+    "dataset_description": "Набір даних містить три ресурси:   \r\n**airAlerts** – xронологічний перелік сповіщень про повітряну тривогу на території міста Києва. Кожен запис містить точний час початку та закінчення тривоги, тип сповіщення, адміністративний код території. Ресурс оновлюється щопонеділка.  \r\n**airAlertState** – кінцева точка АРІ надає інформацію з ІКС ПЦМС «Київ Цифровий» про поточний статус початку/відбою повітряної тривоги в місті Києві.  З міркувань безпеки підлючення до API відбувається за попередньою реєстрацією. Також реалізовано можливість отримання даних через механізм Webhook.\r\n**airAlertHistory** – кінцева точка API надає інформацію з ІКС ПЦМС «Київ Цифровий» про поточні та минулі тривоги в місті Києві.",
+    "collection_basis": "Кодекс цивільного захисту України, Постанова Кабінету Міністрів України від 27.09.2017 № 733",
+    "language": "Українська",
+    "dataset_created": "2026-02-25T16:02:31",
+    "dataset_modified": "2026-10-30T18:34:40",
+    "data_period": "з 28.02.2022 по 26.10.2026",
+    "update_frequency": "Більш як один раз на день",
+    "keywords": [
+      "безпека",
+      "захист",
+      "оповіщення",
+      "тривога"
+    ],
+    "dataset_url": "https://data.kyivcity.gov.ua/dataset/statystyka-povitrianykh-tryvoh-u-misti-kyievi",
+    "structure_url": "https://data.kyivcity.gov.ua/dataset/statystyka-povitrianykh-tryvoh-u-misti-kyievi/structure/download",
+    "organization_title": "Департамент муніципальної безпеки",
+    "organization_edrpou": "42698051",
+    "organization_katottg": "UA80000000000093317",
+    "organization_email": "security@kyivcity.gov.ua",
+    "organization_phone": "+380444300332",
+    "responsible_person": "Наталія Омельчук",
+    "responsible_person_email": "nataliia.omelchuk@kyivcity.gov.ua",
+    "creator_email": "kateryna.burkovets@kyivcity.gov.ua",
+    "license": "Безкоштовно назавжди для особистого або комерційного використання відповідно до ліцензії Open Data Licence",
+    "resources_count": 3
+  },
+  "resources": [
+    {
+      "resource_id": "e1216fe6-7cbd-41ad-b478-85983a2e2669",
+      "resource_name": "airAlertState",
+      "resource_description": "Кінцева точка АРІ надає інформацію з ІКС «Платформа цифрових мобільних сервісів «Київ Цифровий» про поточний статус початку та відбою повітряної тривоги, дані доступні у форматах JSON та XML. З міркувань безпеки підлючення до API відбувається за попередньою реєстрацією. Також реалізовано можливість отримання даних через механізм Webhook.\r\nОпис значень:  \r\n**state** - поточний статус, де 0 - відбій повітряної тривоги;  1 - початок повітряної тривоги.  \r\n**cause** – рівень загрози засобів повітряного нападу, де «missile» (ракетна), «massive-drone» (масована дронова) відповідають червоному рівню, а «drone» – жовтому рівню.  \r\n**created_at** - дата та час події.   \r\n**total_alerts** - загальна кількість тривог з 24.02.2022.  \r\n**total_lasts_for** - тривалість оголошених повітряних тривог у секундах.  ",
+      "format": "JSON",
+      "resource_code": "OTHER",
+      "resource_created": "2026-02-25T16:06:14",
+      "resource_modified": "2026-10-30T18:33:53",
+      "data_period": "-",
+      "source": "ІКС «Платформа цифрових мобільних сервісів «Київ цифровий»",
+      "data_owners": [
+        "-"
+      ],
+      "administrator_org": "Департамент муніципальної безпеки",
+      "resource_current_url": "https://kyiv.digital/open-api/register",
+      "resource_versions": [],
+      "api_available": true,
+      "schema": "-"
+    },
+    {
+      "resource_id": "cbf3758e-031c-42b0-a477-e731cd79b261",
+      "resource_name": "airAlertHistory",
+      "resource_description": "Кінцева точка API надає інформацію з ІКС «Платформа цифрових мобільних сервісів «Київ Цифровий» про поточні та минулі тривоги в місті Києві, дані доступні у форматах JSON та XML.  \r\nОпис значень:  \r\n**state** – подія, де 0 - відбій повітряної тривоги;  1 - початок повітряної тривоги.  \r\n**cause** –  рівень загрози засобів повітряного нападу, де «missile» (ракетна), «massive-drone» (масована дронова) відповідають червоному рівню, а «drone» – жовтому рівню.  \r\n**created_at** – дата та час події.   \r\n",
+      "format": "JSON",
+      "resource_code": "OTHER",
+      "resource_created": "2026-02-25T16:12:01",
+      "resource_modified": "2026-10-30T18:28:01",
+      "data_period": "-",
+      "source": "ІКС «Платформа цифрових мобільних сервісів «Київ цифровий»",
+      "data_owners": [
+        "-"
+      ],
+      "administrator_org": "Департамент муніципальної безпеки",
+      "resource_current_url": "https://kyiv.digital/open-api/air-alert/history",
+      "resource_versions": [],
+      "api_available": true,
+      "schema": "-"
+    },
+    {
+      "resource_id": "5e4fb8a8-f0c8-4a12-885f-192d1f0dba75",
+      "resource_name": "airAlert.json",
+      "resource_description": "Ресурс містить структуровані машиночитані дані про оповіщення про оголошення повітряних тривог на території Києва. Кожен об'єкт масиву містить унікальний ідентифікатор, адміністративний код території (КАТОТТГ), тип події та точні часові мітки початку і завершення небезпеки.",
+      "format": "JSON",
+      "resource_code": "OTHER",
+      "resource_created": "2026-02-25T16:15:15",
+      "resource_modified": "2026-10-26T06:00:01",
+      "data_period": "2022-02-28 — 2026-10-26",
+      "source": "ІКС «Платформа цифрових мобільних сервісів «Київ цифровий»",
+      "data_owners": [
+        "-"
+      ],
+      "administrator_org": "Департамент муніципальної безпеки",
+      "resource_current_url": "https://data.kyivcity.gov.ua/dataset/bb0f27d3-00e2-414a-9d6e-a8b6633f8a2a/resource/5e4fb8a8-f0c8-4a12-885f-192d1f0dba75/download/airalerts.json",
+      "resource_versions": [],
+      "api_available": false,
+      "schema": "-"
+    }
+  ],
+  "generated_at": "31.10.2026 18:26"
+}
