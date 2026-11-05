@@ -1,0 +1,217 @@
+{
+  "source": "kyiv_school_daily.csv",
+  "first_date": "2022-02-28",
+  "last_date": "2026-10-19",
+  "rows": 1695,
+  "min_segment_days": 180,
+  "method": "For each threshold, scan one split across the full series subject to at least 180 days on each side, selecting the split with greatest reduction in Bernoulli entropy versus one overall rate. This is exploratory and unadjusted for scanning many candidate dates.",
+  "caveats": [
+    "Exploratory scan only; the best date is selected after looking at all candidate dates, so the apparent change is optimistic.",
+    "No formal significance test or multiple-testing correction is applied.",
+    "Alert frequency is not attack frequency and cannot identify the cause of a change.",
+    "Source snapshot ends 2026-10-19 and the final 2026 half-year is partial."
+  ],
+  "thresholds": {
+    "60": {
+      "overall_days": 1695,
+      "overall_events": 222,
+      "overall_rate": 0.130973,
+      "best_single_split": {
+        "split_date": "2023-03-24",
+        "left_days": 389,
+        "left_events": 105,
+        "right_days": 1306,
+        "right_events": 117,
+        "left_rate": 0.269923,
+        "right_rate": 0.089587,
+        "entropy_gain_nats": 37.333
+      },
+      "half_year_rates": {
+        "2022-H1": {
+          "days": 123,
+          "events": 41,
+          "rate": 0.333333
+        },
+        "2022-H2": {
+          "days": 184,
+          "events": 36,
+          "rate": 0.195652
+        },
+        "2023-H1": {
+          "days": 181,
+          "events": 31,
+          "rate": 0.171271
+        },
+        "2023-H2": {
+          "days": 184,
+          "events": 21,
+          "rate": 0.11413
+        },
+        "2024-H1": {
+          "days": 182,
+          "events": 21,
+          "rate": 0.115385
+        },
+        "2024-H2": {
+          "days": 184,
+          "events": 6,
+          "rate": 0.032609
+        },
+        "2025-H1": {
+          "days": 181,
+          "events": 6,
+          "rate": 0.033149
+        },
+        "2025-H2": {
+          "days": 184,
+          "events": 10,
+          "rate": 0.054348
+        },
+        "2026-H1": {
+          "days": 181,
+          "events": 7,
+          "rate": 0.038674
+        },
+        "2026-H2": {
+          "days": 111,
+          "events": 43,
+          "rate": 0.387387
+        }
+      }
+    },
+    "120": {
+      "overall_days": 1695,
+      "overall_events": 99,
+      "overall_rate": 0.058407,
+      "best_single_split": {
+        "split_date": "2023-01-01",
+        "left_days": 307,
+        "left_events": 41,
+        "right_days": 1388,
+        "right_events": 58,
+        "left_rate": 0.13355,
+        "right_rate": 0.041787,
+        "entropy_gain_nats": 15.635
+      },
+      "half_year_rates": {
+        "2022-H1": {
+          "days": 123,
+          "events": 20,
+          "rate": 0.162602
+        },
+        "2022-H2": {
+          "days": 184,
+          "events": 21,
+          "rate": 0.11413
+        },
+        "2023-H1": {
+          "days": 181,
+          "events": 6,
+          "rate": 0.033149
+        },
+        "2023-H2": {
+          "days": 184,
+          "events": 7,
+          "rate": 0.038043
+        },
+        "2024-H1": {
+          "days": 182,
+          "events": 3,
+          "rate": 0.016484
+        },
+        "2024-H2": {
+          "days": 184,
+          "events": 3,
+          "rate": 0.016304
+        },
+        "2025-H1": {
+          "days": 181,
+          "events": 2,
+          "rate": 0.01105
+        },
+        "2025-H2": {
+          "days": 184,
+          "events": 5,
+          "rate": 0.027174
+        },
+        "2026-H1": {
+          "days": 181,
+          "events": 2,
+          "rate": 0.01105
+        },
+        "2026-H2": {
+          "days": 111,
+          "events": 30,
+          "rate": 0.27027
+        }
+      }
+    },
+    "180": {
+      "overall_days": 1695,
+      "overall_events": 33,
+      "overall_rate": 0.019469,
+      "best_single_split": {
+        "split_date": "2026-04-23",
+        "left_days": 1515,
+        "left_events": 21,
+        "right_days": 180,
+        "right_events": 12,
+        "left_rate": 0.013861,
+        "right_rate": 0.066667,
+        "entropy_gain_nats": 7.869
+      },
+      "half_year_rates": {
+        "2022-H1": {
+          "days": 123,
+          "events": 6,
+          "rate": 0.04878
+        },
+        "2022-H2": {
+          "days": 184,
+          "events": 6,
+          "rate": 0.032609
+        },
+        "2023-H1": {
+          "days": 181,
+          "events": 2,
+          "rate": 0.01105
+        },
+        "2023-H2": {
+          "days": 184,
+          "events": 2,
+          "rate": 0.01087
+        },
+        "2024-H1": {
+          "days": 182,
+          "events": 0,
+          "rate": 0
+        },
+        "2024-H2": {
+          "days": 184,
+          "events": 2,
+          "rate": 0.01087
+        },
+        "2025-H1": {
+          "days": 181,
+          "events": 1,
+          "rate": 0.005525
+        },
+        "2025-H2": {
+          "days": 184,
+          "events": 2,
+          "rate": 0.01087
+        },
+        "2026-H1": {
+          "days": 181,
+          "events": 0,
+          "rate": 0
+        },
+        "2026-H2": {
+          "days": 111,
+          "events": 12,
+          "rate": 0.108108
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+date,raw_interval_rows,school_window_min,alert_ge_60,alert_ge_120,alert_ge_180,label_status
+2026-10-22,7,147,1,1,0,manual_transcription_unverified_coverage
+2026-10-23,8,108,1,0,0,manual_transcription_unverified_coverage
+2026-10-24,5,18,0,0,0,manual_transcription_unverified_coverage
