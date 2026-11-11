@@ -1,0 +1,56 @@
+{
+  "source_rows": 1695,
+  "first_date": "2022-02-28",
+  "last_date": "2026-10-19",
+  "warmup_days": 365,
+  "test_start": "2023-02-28",
+  "test_days": 1330,
+  "common_test_period": true,
+  "rolling_windows_days": [
+    30,
+    60,
+    90,
+    180,
+    365
+  ],
+  "metrics": {
+    "60": {
+      "event_count": 130,
+      "observed_rate": 0.097744,
+      "brier_expanding": 0.093429,
+      "brier_rolling30": 0.072612,
+      "brier_rolling60": 0.076377,
+      "brier_rolling90": 0.080276,
+      "brier_rolling180": 0.086372,
+      "brier_rolling365": 0.087782
+    },
+    "120": {
+      "event_count": 55,
+      "observed_rate": 0.041353,
+      "brier_expanding": 0.041034,
+      "brier_rolling30": 0.033324,
+      "brier_rolling60": 0.034654,
+      "brier_rolling90": 0.035794,
+      "brier_rolling180": 0.038192,
+      "brier_rolling365": 0.03924
+    },
+    "180": {
+      "event_count": 19,
+      "observed_rate": 0.014286,
+      "brier_expanding": 0.014218,
+      "brier_rolling30": 0.013273,
+      "brier_rolling60": 0.013435,
+      "brier_rolling90": 0.013566,
+      "brier_rolling180": 0.013914,
+      "brier_rolling365": 0.014035
+    }
+  },
+  "caveats": [
+    "All compared models are evaluated on the same dates, after a 365-day warm-up.",
+    "Each prediction uses only outcomes strictly before its target date.",
+    "Rolling-window selection may vary by threshold and time period; this is a historical benchmark, not a production forecast.",
+    "Only Kyiv school-window alert history is used; no national attack predictors are included.",
+    "The source snapshot ends on 2026-10-19 and is not a live feed.",
+    "Historical Brier score does not establish operational safety; official alerts govern safety decisions."
+  ]
+}
