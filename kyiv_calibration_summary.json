@@ -1,0 +1,362 @@
+{
+  "source": "kyiv_window_predictions.csv",
+  "first_date": "2023-02-28",
+  "last_date": "2026-10-19",
+  "test_days": 1330,
+  "bin_edges": [
+    0.0,
+    0.05,
+    0.1,
+    0.2,
+    0.4,
+    1.0
+  ],
+  "metrics": {
+    "60": {
+      "rolling30": {
+        "n": 1330,
+        "event_count": 130,
+        "observed_rate": 0.09774436,
+        "mean_predicted_probability": 0.0930576,
+        "brier_score": 0.07261237,
+        "log_loss": 0.58037246,
+        "expected_calibration_error_fixed_bins": 0.03055153,
+        "brier_skill_vs_expanding": 0.22281106
+      },
+      "rolling60": {
+        "n": 1330,
+        "event_count": 130,
+        "observed_rate": 0.09774436,
+        "mean_predicted_probability": 0.0888095,
+        "brier_score": 0.0763774,
+        "log_loss": 0.34399799,
+        "expected_calibration_error_fixed_bins": 0.02199253,
+        "brier_skill_vs_expanding": 0.18251302
+      },
+      "rolling90": {
+        "n": 1330,
+        "event_count": 130,
+        "observed_rate": 0.09774436,
+        "mean_predicted_probability": 0.08698399,
+        "brier_score": 0.08027625,
+        "log_loss": 0.31111959,
+        "expected_calibration_error_fixed_bins": 0.01709298,
+        "brier_skill_vs_expanding": 0.14078258
+      },
+      "rolling180": {
+        "n": 1330,
+        "event_count": 130,
+        "observed_rate": 0.09774436,
+        "mean_predicted_probability": 0.08923556,
+        "brier_score": 0.08637239,
+        "log_loss": 0.30895675,
+        "expected_calibration_error_fixed_bins": 0.02836681,
+        "brier_skill_vs_expanding": 0.07553399
+      },
+      "rolling365": {
+        "n": 1330,
+        "event_count": 130,
+        "observed_rate": 0.09774436,
+        "mean_predicted_probability": 0.09685651,
+        "brier_score": 0.08778152,
+        "log_loss": 0.31606572,
+        "expected_calibration_error_fixed_bins": 0.02795134,
+        "brier_skill_vs_expanding": 0.06045171
+      },
+      "rolling30_laplace": {
+        "n": 1330,
+        "event_count": 130,
+        "observed_rate": 0.09774436,
+        "mean_predicted_probability": 0.11849154,
+        "brier_score": 0.07290957,
+        "log_loss": 0.26514687,
+        "expected_calibration_error_fixed_bins": 0.03705357,
+        "brier_skill_vs_expanding": 0.21963006
+      },
+      "rolling60_laplace": {
+        "n": 1330,
+        "event_count": 130,
+        "observed_rate": 0.09774436,
+        "mean_predicted_probability": 0.10207373,
+        "brier_score": 0.07632146,
+        "log_loss": 0.27405118,
+        "expected_calibration_error_fixed_bins": 0.02021586,
+        "brier_skill_vs_expanding": 0.18311169
+      },
+      "rolling90_laplace": {
+        "n": 1330,
+        "event_count": 130,
+        "observed_rate": 0.09774436,
+        "mean_predicted_probability": 0.09596273,
+        "brier_score": 0.08015318,
+        "log_loss": 0.28624208,
+        "expected_calibration_error_fixed_bins": 0.02097091,
+        "brier_skill_vs_expanding": 0.14209979
+      },
+      "rolling180_laplace": {
+        "n": 1330,
+        "event_count": 130,
+        "observed_rate": 0.09774436,
+        "mean_predicted_probability": 0.09374948,
+        "brier_score": 0.08627674,
+        "log_loss": 0.30762616,
+        "expected_calibration_error_fixed_bins": 0.02459308,
+        "brier_skill_vs_expanding": 0.07655775
+      },
+      "rolling365_laplace": {
+        "n": 1330,
+        "event_count": 130,
+        "observed_rate": 0.09774436,
+        "mean_predicted_probability": 0.09905349,
+        "brier_score": 0.08776596,
+        "log_loss": 0.31568722,
+        "expected_calibration_error_fixed_bins": 0.02648378,
+        "brier_skill_vs_expanding": 0.0606183
+      },
+      "expanding": {
+        "n": 1330,
+        "event_count": 130,
+        "observed_rate": 0.09774436,
+        "mean_predicted_probability": 0.16102621,
+        "brier_score": 0.09342949,
+        "log_loss": 0.34022468,
+        "expected_calibration_error_fixed_bins": 0.06328185,
+        "brier_skill_vs_expanding": 0.0
+      }
+    },
+    "120": {
+      "rolling30": {
+        "n": 1330,
+        "event_count": 55,
+        "observed_rate": 0.04135338,
+        "mean_predicted_probability": 0.03711774,
+        "brier_score": 0.03332415,
+        "log_loss": 0.37837626,
+        "expected_calibration_error_fixed_bins": 0.01556402,
+        "brier_skill_vs_expanding": 0.18788946
+      },
+      "rolling60": {
+        "n": 1330,
+        "event_count": 55,
+        "observed_rate": 0.04135338,
+        "mean_predicted_probability": 0.03256895,
+        "brier_score": 0.0346535,
+        "log_loss": 0.31668554,
+        "expected_calibration_error_fixed_bins": 0.01605259,
+        "brier_skill_vs_expanding": 0.15549294
+      },
+      "rolling90": {
+        "n": 1330,
+        "event_count": 55,
+        "observed_rate": 0.04135338,
+        "mean_predicted_probability": 0.03033408,
+        "brier_score": 0.03579402,
+        "log_loss": 0.23406796,
+        "expected_calibration_error_fixed_bins": 0.0110193,
+        "brier_skill_vs_expanding": 0.12769846
+      },
+      "rolling180": {
+        "n": 1330,
+        "event_count": 55,
+        "observed_rate": 0.04135338,
+        "mean_predicted_probability": 0.03062248,
+        "brier_score": 0.03819213,
+        "log_loss": 0.20695934,
+        "expected_calibration_error_fixed_bins": 0.01251877,
+        "brier_skill_vs_expanding": 0.0692566
+      },
+      "rolling365": {
+        "n": 1330,
+        "event_count": 55,
+        "observed_rate": 0.04135338,
+        "mean_predicted_probability": 0.03384081,
+        "brier_score": 0.03923987,
+        "log_loss": 0.16676113,
+        "expected_calibration_error_fixed_bins": 0.01036357,
+        "brier_skill_vs_expanding": 0.04372304
+      },
+      "rolling30_laplace": {
+        "n": 1330,
+        "event_count": 55,
+        "observed_rate": 0.04135338,
+        "mean_predicted_probability": 0.06604793,
+        "brier_score": 0.03387057,
+        "log_loss": 0.14358012,
+        "expected_calibration_error_fixed_bins": 0.02911184,
+        "brier_skill_vs_expanding": 0.17457318
+      },
+      "rolling60_laplace": {
+        "n": 1330,
+        "event_count": 55,
+        "observed_rate": 0.04135338,
+        "mean_predicted_probability": 0.04764734,
+        "brier_score": 0.03465551,
+        "log_loss": 0.14200696,
+        "expected_calibration_error_fixed_bins": 0.02283531,
+        "brier_skill_vs_expanding": 0.15544399
+      },
+      "rolling90_laplace": {
+        "n": 1330,
+        "event_count": 55,
+        "observed_rate": 0.04135338,
+        "mean_predicted_probability": 0.0405443,
+        "brier_score": 0.03571544,
+        "log_loss": 0.14585988,
+        "expected_calibration_error_fixed_bins": 0.01059987,
+        "brier_skill_vs_expanding": 0.1296135
+      },
+      "rolling180_laplace": {
+        "n": 1330,
+        "event_count": 55,
+        "observed_rate": 0.04135338,
+        "mean_predicted_probability": 0.03578039,
+        "brier_score": 0.03811513,
+        "log_loss": 0.16111502,
+        "expected_calibration_error_fixed_bins": 0.0088697,
+        "brier_skill_vs_expanding": 0.07113299
+      },
+      "rolling365_laplace": {
+        "n": 1330,
+        "event_count": 55,
+        "observed_rate": 0.04135338,
+        "mean_predicted_probability": 0.03638114,
+        "brier_score": 0.03920751,
+        "log_loss": 0.16613643,
+        "expected_calibration_error_fixed_bins": 0.00559915,
+        "brier_skill_vs_expanding": 0.04451166
+      },
+      "expanding": {
+        "n": 1330,
+        "event_count": 55,
+        "observed_rate": 0.04135338,
+        "mean_predicted_probability": 0.06494465,
+        "brier_score": 0.041034,
+        "log_loss": 0.18297553,
+        "expected_calibration_error_fixed_bins": 0.02610588,
+        "brier_skill_vs_expanding": 0.0
+      }
+    },
+    "180": {
+      "rolling30": {
+        "n": 1330,
+        "event_count": 19,
+        "observed_rate": 0.01428571,
+        "mean_predicted_probability": 0.01278192,
+        "brier_score": 0.01327318,
+        "log_loss": 0.21292887,
+        "expected_calibration_error_fixed_bins": 0.00365919,
+        "brier_skill_vs_expanding": 0.06644086
+      },
+      "rolling60": {
+        "n": 1330,
+        "event_count": 19,
+        "observed_rate": 0.01428571,
+        "mean_predicted_probability": 0.01088978,
+        "brier_score": 0.01343463,
+        "log_loss": 0.21601501,
+        "expected_calibration_error_fixed_bins": 0.00640345,
+        "brier_skill_vs_expanding": 0.05508551
+      },
+      "rolling90": {
+        "n": 1330,
+        "event_count": 19,
+        "observed_rate": 0.01428571,
+        "mean_predicted_probability": 0.00965741,
+        "brier_score": 0.01356576,
+        "log_loss": 0.19592273,
+        "expected_calibration_error_fixed_bins": 0.0046283,
+        "brier_skill_vs_expanding": 0.04586221
+      },
+      "rolling180": {
+        "n": 1330,
+        "event_count": 19,
+        "observed_rate": 0.01428571,
+        "mean_predicted_probability": 0.00964923,
+        "brier_score": 0.01391376,
+        "log_loss": 0.15874316,
+        "expected_calibration_error_fixed_bins": 0.00463648,
+        "brier_skill_vs_expanding": 0.021386
+      },
+      "rolling365": {
+        "n": 1330,
+        "event_count": 19,
+        "observed_rate": 0.01428571,
+        "mean_predicted_probability": 0.01058791,
+        "brier_score": 0.01403458,
+        "log_loss": 0.07351256,
+        "expected_calibration_error_fixed_bins": 0.0036978,
+        "brier_skill_vs_expanding": 0.01288829
+      },
+      "rolling30_laplace": {
+        "n": 1330,
+        "event_count": 19,
+        "observed_rate": 0.01428571,
+        "mean_predicted_probability": 0.04323308,
+        "brier_score": 0.01407278,
+        "log_loss": 0.0782917,
+        "expected_calibration_error_fixed_bins": 0.02894737,
+        "brier_skill_vs_expanding": 0.01020169
+      },
+      "rolling60_laplace": {
+        "n": 1330,
+        "event_count": 19,
+        "observed_rate": 0.01428571,
+        "mean_predicted_probability": 0.02666748,
+        "brier_score": 0.0135755,
+        "log_loss": 0.06970979,
+        "expected_calibration_error_fixed_bins": 0.01878487,
+        "brier_skill_vs_expanding": 0.04517768
+      },
+      "rolling90_laplace": {
+        "n": 1330,
+        "event_count": 19,
+        "observed_rate": 0.01428571,
+        "mean_predicted_probability": 0.0203171,
+        "brier_score": 0.01358554,
+        "log_loss": 0.06848058,
+        "expected_calibration_error_fixed_bins": 0.01139261,
+        "brier_skill_vs_expanding": 0.04447166
+      },
+      "rolling180_laplace": {
+        "n": 1330,
+        "event_count": 19,
+        "observed_rate": 0.01428571,
+        "mean_predicted_probability": 0.01503759,
+        "brier_score": 0.01389361,
+        "log_loss": 0.0720682,
+        "expected_calibration_error_fixed_bins": 0.00319755,
+        "brier_skill_vs_expanding": 0.02280325
+      },
+      "rolling365_laplace": {
+        "n": 1330,
+        "event_count": 19,
+        "observed_rate": 0.01428571,
+        "mean_predicted_probability": 0.01325521,
+        "brier_score": 0.01402202,
+        "log_loss": 0.07293552,
+        "expected_calibration_error_fixed_bins": 0.00103051,
+        "brier_skill_vs_expanding": 0.01377213
+      },
+      "expanding": {
+        "n": 1330,
+        "event_count": 19,
+        "observed_rate": 0.01428571,
+        "mean_predicted_probability": 0.01936981,
+        "brier_score": 0.01421783,
+        "log_loss": 0.07798768,
+        "expected_calibration_error_fixed_bins": 0.0050841,
+        "brier_skill_vs_expanding": 0.0
+      }
+    }
+  },
+  "caveats": [
+    "Predictions are retrospective walk-forward estimates from Kyiv school-window history only.",
+    "Brier skill is relative to the expanding-history frequency baseline on identical rows.",
+    "Fixed-bin calibration error depends on the chosen bins and is descriptive, not a standalone selection criterion.",
+    "Log loss clips probabilities at 1e-15 to keep exact zero/one predictions finite.",
+    "Laplace-smoothed variants add one pseudo-event and one pseudo-non-event to each rolling window; this is a simple fixed smoothing rule, not tuned to the test period.",
+    "Rare 120- and 180-minute outcomes have fewer events, so calibration estimates are noisy.",
+    "No national attack predictors are included; the historical snapshot ends 2026-10-19 and is not live.",
+    "This analysis does not establish operational safety; official alerts govern safety decisions."
+  ]
+}

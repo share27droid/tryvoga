@@ -1,0 +1,191 @@
+{
+  "source_last_date": "2026-10-19",
+  "warmup_days": 365,
+  "segments": {
+    "2023-H1": {
+      "days": 123,
+      "metrics": {
+        "60": {
+          "events": 16,
+          "brier_rolling30": 0.10344,
+          "brier_rolling90": 0.11384,
+          "rolling30_improvement_pct": 9.1
+        },
+        "120": {
+          "events": 3,
+          "brier_rolling30": 0.0246,
+          "brier_rolling90": 0.02419,
+          "rolling30_improvement_pct": -1.7
+        },
+        "180": {
+          "events": 0,
+          "brier_rolling30": 0.00012,
+          "brier_rolling90": 0.00033,
+          "rolling30_improvement_pct": 63.6
+        }
+      }
+    },
+    "2023-H2": {
+      "days": 184,
+      "metrics": {
+        "60": {
+          "events": 21,
+          "brier_rolling30": 0.08963,
+          "brier_rolling90": 0.09895,
+          "rolling30_improvement_pct": 9.4
+        },
+        "120": {
+          "events": 7,
+          "brier_rolling30": 0.03741,
+          "brier_rolling90": 0.03653,
+          "rolling30_improvement_pct": -2.4
+        },
+        "180": {
+          "events": 2,
+          "brier_rolling30": 0.01122,
+          "brier_rolling90": 0.01088,
+          "rolling30_improvement_pct": -3.1
+        }
+      }
+    },
+    "2024-H1": {
+      "days": 182,
+      "metrics": {
+        "60": {
+          "events": 21,
+          "brier_rolling30": 0.09571,
+          "brier_rolling90": 0.10313,
+          "rolling30_improvement_pct": 7.2
+        },
+        "120": {
+          "events": 3,
+          "brier_rolling30": 0.01576,
+          "brier_rolling90": 0.01638,
+          "rolling30_improvement_pct": 3.8
+        },
+        "180": {
+          "events": 0,
+          "brier_rolling30": 0,
+          "brier_rolling90": 0.00011,
+          "rolling30_improvement_pct": 100
+        }
+      }
+    },
+    "2024-H2": {
+      "days": 184,
+      "metrics": {
+        "60": {
+          "events": 6,
+          "brier_rolling30": 0.03292,
+          "brier_rolling90": 0.03182,
+          "rolling30_improvement_pct": -3.5
+        },
+        "120": {
+          "events": 3,
+          "brier_rolling30": 0.01685,
+          "brier_rolling90": 0.01631,
+          "rolling30_improvement_pct": -3.3
+        },
+        "180": {
+          "events": 2,
+          "brier_rolling30": 0.01123,
+          "brier_rolling90": 0.01088,
+          "rolling30_improvement_pct": -3.2
+        }
+      }
+    },
+    "2025-H1": {
+      "days": 181,
+      "metrics": {
+        "60": {
+          "events": 6,
+          "brier_rolling30": 0.03272,
+          "brier_rolling90": 0.0328,
+          "rolling30_improvement_pct": 0.2
+        },
+        "120": {
+          "events": 2,
+          "brier_rolling30": 0.0111,
+          "brier_rolling90": 0.01104,
+          "rolling30_improvement_pct": -0.5
+        },
+        "180": {
+          "events": 1,
+          "brier_rolling30": 0.00571,
+          "brier_rolling90": 0.00558,
+          "rolling30_improvement_pct": -2.3
+        }
+      }
+    },
+    "2025-H2": {
+      "days": 184,
+      "metrics": {
+        "60": {
+          "events": 10,
+          "brier_rolling30": 0.05263,
+          "brier_rolling90": 0.05241,
+          "rolling30_improvement_pct": -0.4
+        },
+        "120": {
+          "events": 5,
+          "brier_rolling30": 0.02697,
+          "brier_rolling90": 0.02691,
+          "rolling30_improvement_pct": -0.2
+        },
+        "180": {
+          "events": 2,
+          "brier_rolling30": 0.01107,
+          "brier_rolling90": 0.01096,
+          "rolling30_improvement_pct": -1
+        }
+      }
+    },
+    "2026-H1": {
+      "days": 181,
+      "metrics": {
+        "60": {
+          "events": 7,
+          "brier_rolling30": 0.03924,
+          "brier_rolling90": 0.03758,
+          "rolling30_improvement_pct": -4.4
+        },
+        "120": {
+          "events": 2,
+          "brier_rolling30": 0.01188,
+          "brier_rolling90": 0.01105,
+          "rolling30_improvement_pct": -7.5
+        },
+        "180": {
+          "events": 0,
+          "brier_rolling30": 0.00016,
+          "brier_rolling90": 0.00006,
+          "rolling30_improvement_pct": -166.7
+        }
+      }
+    },
+    "2026-H2": {
+      "days": 111,
+      "metrics": {
+        "60": {
+          "events": 43,
+          "brier_rolling30": 0.19074,
+          "brier_rolling90": 0.2482,
+          "rolling30_improvement_pct": 23.2
+        },
+        "120": {
+          "events": 30,
+          "brier_rolling30": 0.17405,
+          "brier_rolling90": 0.20699,
+          "rolling30_improvement_pct": 15.9
+        },
+        "180": {
+          "events": 12,
+          "brier_rolling30": 0.09376,
+          "brier_rolling90": 0.09857,
+          "rolling30_improvement_pct": 4.9
+        }
+      }
+    }
+  },
+  "caveat": "Half-year slices can have few events, especially at the 180-minute threshold. These diagnostics describe regime variation; they do not authorize selecting a model using future data."
+}
